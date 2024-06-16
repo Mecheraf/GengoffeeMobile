@@ -17,6 +17,9 @@
 		33B2BE512C1DCDAD00E5B837 /* Gengoffee_MobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE502C1DCDAD00E5B837 /* Gengoffee_MobileUITestsLaunchTests.swift */; };
 		33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE5E2C1DD03D00E5B837 /* FooterComponent.swift */; };
 		33B2BE632C1DD0B500E5B837 /* FooterDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE622C1DD0B500E5B837 /* FooterDesign.swift */; };
+		33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE642C1EFF0C00E5B837 /* EventService.swift */; };
+		33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE672C1EFF6F00E5B837 /* EventModel.swift */; };
+		33B2BE6B2C1EFFAA00E5B837 /* EventContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6A2C1EFFAA00E5B837 /* EventContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		33B2BE502C1DCDAD00E5B837 /* Gengoffee_MobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gengoffee_MobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		33B2BE5E2C1DD03D00E5B837 /* FooterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterComponent.swift; sourceTree = "<group>"; };
 		33B2BE622C1DD0B500E5B837 /* FooterDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterDesign.swift; sourceTree = "<group>"; };
+		33B2BE642C1EFF0C00E5B837 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		33B2BE672C1EFF6F00E5B837 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		33B2BE6A2C1EFFAA00E5B837 /* EventContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,8 @@
 		33B2BE302C1DCDAA00E5B837 /* Gengoffee Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				33B2BE692C1EFF9800E5B837 /* contents */,
+				33B2BE662C1EFF6200E5B837 /* models */,
 				33B2BE612C1DD08900E5B837 /* services */,
 				33B2BE602C1DD08100E5B837 /* design */,
 				33B2BE5D2C1DD01500E5B837 /* shared */,
@@ -156,8 +164,25 @@
 		33B2BE612C1DD08900E5B837 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				33B2BE642C1EFF0C00E5B837 /* EventService.swift */,
 			);
 			path = services;
+			sourceTree = "<group>";
+		};
+		33B2BE662C1EFF6200E5B837 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				33B2BE672C1EFF6F00E5B837 /* EventModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		33B2BE692C1EFF9800E5B837 /* contents */ = {
+			isa = PBXGroup;
+			children = (
+				33B2BE6A2C1EFFAA00E5B837 /* EventContent.swift */,
+			);
+			path = contents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,9 +315,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */,
 				33B2BE342C1DCDAA00E5B837 /* ContentView.swift in Sources */,
+				33B2BE6B2C1EFFAA00E5B837 /* EventContent.swift in Sources */,
 				33B2BE362C1DCDAA00E5B837 /* Item.swift in Sources */,
 				33B2BE632C1DD0B500E5B837 /* FooterDesign.swift in Sources */,
+				33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */,
 				33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */,
 				33B2BE322C1DCDAA00E5B837 /* Gengoffee_MobileApp.swift in Sources */,
 			);
