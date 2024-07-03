@@ -6,16 +6,22 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Wrapper: Codable {
-    let events: [Event]
-}
 
 struct Event: Codable {
-    let id: Int
-    let type: String
-    let date: String
-    let place: String
-    let subscribe: Int
-    let location: String
+    let id: Int?
+    var type: String
+    var date: String
+    var place: String
+    var subscribe: Int
+    var location: String
+    var attendees: [Attendee]?
+    
+    mutating func assignAttendeesToEvent(attendees:[Attendee]) {
+        self.attendees = getAttendeesPerEvent(idEvent: self.id ?? 0, attendees: attendees)
+    }
+
 }
+
+

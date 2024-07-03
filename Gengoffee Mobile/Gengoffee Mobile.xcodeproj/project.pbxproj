@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3395A8432C2C4C460057CA11 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8422C2C4C460057CA11 /* EventRow.swift */; };
+		3395A8452C2C511B0057CA11 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8442C2C511B0057CA11 /* EventList.swift */; };
+		3395A8472C2C54A10057CA11 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8462C2C54A10057CA11 /* EventDetail.swift */; };
+		3395A8492C2C68930057CA11 /* RegisteredDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8482C2C68930057CA11 /* RegisteredDetail.swift */; };
+		3395A84B2C2C6BCC0057CA11 /* RegisteredRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A84A2C2C6BCC0057CA11 /* RegisteredRow.swift */; };
+		3395A84D2C2C6C410057CA11 /* RegisteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A84C2C2C6C410057CA11 /* RegisteredList.swift */; };
 		33B2BE322C1DCDAA00E5B837 /* Gengoffee_MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE312C1DCDAA00E5B837 /* Gengoffee_MobileApp.swift */; };
 		33B2BE342C1DCDAA00E5B837 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE332C1DCDAA00E5B837 /* ContentView.swift */; };
 		33B2BE362C1DCDAA00E5B837 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE352C1DCDAA00E5B837 /* Item.swift */; };
@@ -19,7 +25,14 @@
 		33B2BE632C1DD0B500E5B837 /* FooterDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE622C1DD0B500E5B837 /* FooterDesign.swift */; };
 		33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE642C1EFF0C00E5B837 /* EventService.swift */; };
 		33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE672C1EFF6F00E5B837 /* EventModel.swift */; };
-		33B2BE6B2C1EFFAA00E5B837 /* EventContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6A2C1EFFAA00E5B837 /* EventContent.swift */; };
+		33B2BE6B2C1EFFAA00E5B837 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6A2C1EFFAA00E5B837 /* EventView.swift */; };
+		33B2BE6D2C2479A100E5B837 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6C2C2479A100E5B837 /* DateService.swift */; };
+		33B2BE6F2C247F2900E5B837 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6E2C247F2900E5B837 /* CreateEventView.swift */; };
+		33B2BE712C25FCCC00E5B837 /* RegisteredService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE702C25FCCC00E5B837 /* RegisteredService.swift */; };
+		33B2BE732C25FCEA00E5B837 /* RegisteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE722C25FCEA00E5B837 /* RegisteredView.swift */; };
+		33B2BE752C25FD6800E5B837 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE742C25FD6800E5B837 /* UserModel.swift */; };
+		33B2BE7A2C26ED8100E5B837 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE792C26ED8100E5B837 /* Variables.swift */; };
+		33B2BE7E2C273CF800E5B837 /* AddRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE7D2C273CF800E5B837 /* AddRegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +53,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3395A8422C2C4C460057CA11 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		3395A8442C2C511B0057CA11 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
+		3395A8462C2C54A10057CA11 /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
+		3395A8482C2C68930057CA11 /* RegisteredDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredDetail.swift; sourceTree = "<group>"; };
+		3395A84A2C2C6BCC0057CA11 /* RegisteredRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredRow.swift; sourceTree = "<group>"; };
+		3395A84C2C2C6C410057CA11 /* RegisteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredList.swift; sourceTree = "<group>"; };
 		33B2BE2E2C1DCDAA00E5B837 /* Gengoffee Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gengoffee Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B2BE312C1DCDAA00E5B837 /* Gengoffee_MobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gengoffee_MobileApp.swift; sourceTree = "<group>"; };
 		33B2BE332C1DCDAA00E5B837 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,7 +74,14 @@
 		33B2BE622C1DD0B500E5B837 /* FooterDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterDesign.swift; sourceTree = "<group>"; };
 		33B2BE642C1EFF0C00E5B837 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		33B2BE672C1EFF6F00E5B837 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
-		33B2BE6A2C1EFFAA00E5B837 /* EventContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContent.swift; sourceTree = "<group>"; };
+		33B2BE6A2C1EFFAA00E5B837 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		33B2BE6C2C2479A100E5B837 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
+		33B2BE6E2C247F2900E5B837 /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
+		33B2BE702C25FCCC00E5B837 /* RegisteredService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredService.swift; sourceTree = "<group>"; };
+		33B2BE722C25FCEA00E5B837 /* RegisteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredView.swift; sourceTree = "<group>"; };
+		33B2BE742C25FD6800E5B837 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		33B2BE792C26ED8100E5B837 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		33B2BE7D2C273CF800E5B837 /* AddRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +109,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3395A8412C2C4C340057CA11 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				3395A8422C2C4C460057CA11 /* EventRow.swift */,
+				3395A8442C2C511B0057CA11 /* EventList.swift */,
+				3395A8462C2C54A10057CA11 /* EventDetail.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		33B2BE252C1DCDAA00E5B837 = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +142,8 @@
 		33B2BE302C1DCDAA00E5B837 /* Gengoffee Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				33B2BE692C1EFF9800E5B837 /* contents */,
+				33B2BE782C26ED7300E5B837 /* assets */,
+				33B2BE692C1EFF9800E5B837 /* views */,
 				33B2BE662C1EFF6200E5B837 /* models */,
 				33B2BE612C1DD08900E5B837 /* services */,
 				33B2BE602C1DD08100E5B837 /* design */,
@@ -165,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				33B2BE642C1EFF0C00E5B837 /* EventService.swift */,
+				33B2BE6C2C2479A100E5B837 /* DateService.swift */,
+				33B2BE702C25FCCC00E5B837 /* RegisteredService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -173,16 +212,40 @@
 			isa = PBXGroup;
 			children = (
 				33B2BE672C1EFF6F00E5B837 /* EventModel.swift */,
+				33B2BE742C25FD6800E5B837 /* UserModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
 		};
-		33B2BE692C1EFF9800E5B837 /* contents */ = {
+		33B2BE692C1EFF9800E5B837 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				33B2BE6A2C1EFFAA00E5B837 /* EventContent.swift */,
+				3395A8412C2C4C340057CA11 /* Event */,
+				33B2BE722C25FCEA00E5B837 /* RegisteredView.swift */,
+				33B2BE7B2C273CCF00E5B837 /* register */,
+				33B2BE6A2C1EFFAA00E5B837 /* EventView.swift */,
+				33B2BE6E2C247F2900E5B837 /* CreateEventView.swift */,
 			);
-			path = contents;
+			path = views;
+			sourceTree = "<group>";
+		};
+		33B2BE782C26ED7300E5B837 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				33B2BE792C26ED8100E5B837 /* Variables.swift */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		33B2BE7B2C273CCF00E5B837 /* register */ = {
+			isa = PBXGroup;
+			children = (
+				33B2BE7D2C273CF800E5B837 /* AddRegisterView.swift */,
+				3395A8482C2C68930057CA11 /* RegisteredDetail.swift */,
+				3395A84A2C2C6BCC0057CA11 /* RegisteredRow.swift */,
+				3395A84C2C2C6C410057CA11 /* RegisteredList.swift */,
+			);
+			path = register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,13 +378,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B2BE732C25FCEA00E5B837 /* RegisteredView.swift in Sources */,
+				33B2BE7A2C26ED8100E5B837 /* Variables.swift in Sources */,
+				33B2BE6D2C2479A100E5B837 /* DateService.swift in Sources */,
+				3395A8432C2C4C460057CA11 /* EventRow.swift in Sources */,
 				33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */,
+				3395A8472C2C54A10057CA11 /* EventDetail.swift in Sources */,
 				33B2BE342C1DCDAA00E5B837 /* ContentView.swift in Sources */,
-				33B2BE6B2C1EFFAA00E5B837 /* EventContent.swift in Sources */,
+				33B2BE712C25FCCC00E5B837 /* RegisteredService.swift in Sources */,
+				33B2BE752C25FD6800E5B837 /* UserModel.swift in Sources */,
+				33B2BE6B2C1EFFAA00E5B837 /* EventView.swift in Sources */,
+				3395A8452C2C511B0057CA11 /* EventList.swift in Sources */,
 				33B2BE362C1DCDAA00E5B837 /* Item.swift in Sources */,
 				33B2BE632C1DD0B500E5B837 /* FooterDesign.swift in Sources */,
+				33B2BE7E2C273CF800E5B837 /* AddRegisterView.swift in Sources */,
 				33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */,
+				3395A8492C2C68930057CA11 /* RegisteredDetail.swift in Sources */,
+				3395A84B2C2C6BCC0057CA11 /* RegisteredRow.swift in Sources */,
+				33B2BE6F2C247F2900E5B837 /* CreateEventView.swift in Sources */,
 				33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */,
+				3395A84D2C2C6C410057CA11 /* RegisteredList.swift in Sources */,
 				33B2BE322C1DCDAA00E5B837 /* Gengoffee_MobileApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
