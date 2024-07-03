@@ -94,6 +94,39 @@ func newUserToEvent(message: User, completion: @escaping (_ success: Bool) -> Vo
     task.resume()
 }
 
+func updateAttendee(message: [Attendee], completion: @escaping (_ success: Bool) -> Void){
+    
+    @StateObject var golbalAPI = APIModel()
+    
+    let url = URL(string: golbalAPI.API_Dev+"updateAttendee")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    
+    let data = try! JSONEncoder().encode(message)
+    request.httpBody = data
+    request.setValue(
+        "application/json",
+        forHTTPHeaderField: "Content-Type"
+    )
+    
+    var success:Bool!
+
+    
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let statusCode = (response as! HTTPURLResponse).statusCode
+        
+        if statusCode == 200 {
+            success = true
+            print("SUCCESS")
+        } else {
+            success = false
+            print("FAILURE")
+        }
+        completion(success)
+    }
+    task.resume()
+}
+
 #Preview {
     AddRegisterView()
 }
