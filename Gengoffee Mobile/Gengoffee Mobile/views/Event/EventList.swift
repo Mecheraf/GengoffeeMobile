@@ -30,12 +30,13 @@ var events:[Event] = [
 
 struct EventList: View {
     var events: [Event]
+    @Binding var selectedTab:FooterSelection
     
     var body: some View {
         NavigationSplitView {
             List(events, id: \.id) { event in
                 NavigationLink {
-                    EventDetail(event:event)
+                    EventDetail(event:event, selectedTab: $selectedTab)
                 } label: {
                     EventRow(event: event)
                 }
@@ -49,5 +50,5 @@ struct EventList: View {
 
 
 #Preview {
-    EventList(events: events)
+    EventList(events: events, selectedTab: .constant(.tables))
 }

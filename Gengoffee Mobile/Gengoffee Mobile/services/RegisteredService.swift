@@ -94,15 +94,16 @@ func newUserToEvent(message: User, completion: @escaping (_ success: Bool) -> Vo
     task.resume()
 }
 
-func updateAttendee(message: [Attendee], completion: @escaping (_ success: Bool) -> Void){
+func updateAttendee(message: [String: [Attendee]], completion: @escaping (_ success: Bool) -> Void){
     
     @StateObject var golbalAPI = APIModel()
     
     let url = URL(string: golbalAPI.API_Dev+"updateAttendee")!
     var request = URLRequest(url: url)
-    request.httpMethod = "POST"
+    request.httpMethod = "PUT"
     
     let data = try! JSONEncoder().encode(message)
+    print(message)
     request.httpBody = data
     request.setValue(
         "application/json",
@@ -125,8 +126,4 @@ func updateAttendee(message: [Attendee], completion: @escaping (_ success: Bool)
         completion(success)
     }
     task.resume()
-}
-
-#Preview {
-    AddRegisterView()
 }

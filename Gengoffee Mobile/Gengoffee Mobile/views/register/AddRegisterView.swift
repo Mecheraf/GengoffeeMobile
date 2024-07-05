@@ -132,29 +132,29 @@ struct AddRegisterView: View {
                 Text("Create Event")
             }.frame(maxWidth: .infinity)
         }
-        Button{
-            do {
-                let message = User(
-                    id: idEvent,
-                    firstname: firstname,
-                    lastname: lastname,
-                    phone: phone,
-                    diet: diet,
-                    mail: mail,
-                    nationality: nationality,
-                    birthdate: dateWithoutTime(date: birthDate),
-                    fr:french,
-                    en:english,
-                    jp:japanese
-                )
-                print(message)
-            }
-        }label: {
-            VStack(spacing: 6) {
-                Image(systemName: "list.number")
-                Text("Print")
-            }.frame(maxWidth: .infinity)
-        }
+//        Button{
+//            do {
+//                let message = User(
+//                    id: idEvent,
+//                    firstname: firstname,
+//                    lastname: lastname,
+//                    phone: phone,
+//                    diet: diet,
+//                    mail: mail,
+//                    nationality: nationality,
+//                    birthdate: dateWithoutTime(date: birthDate),
+//                    fr:french,
+//                    en:english,
+//                    jp:japanese
+//                )
+//                print(message)
+//            }
+//        }label: {
+//            VStack(spacing: 6) {
+//                Image(systemName: "list.number")
+//                Text("Print")
+//            }.frame(maxWidth: .infinity)
+//        }
     } //body
 } //struct
 
