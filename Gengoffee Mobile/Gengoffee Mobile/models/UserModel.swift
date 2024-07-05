@@ -18,10 +18,11 @@ struct Language: Codable {
 }
 
 struct Attendee: Codable {
+    let idUser:Int
     let firstname: String
     let lastname: String
     let diet: String?
-    let paid:Int
+    var paid:Int
     let idEvent: Int
 }
 

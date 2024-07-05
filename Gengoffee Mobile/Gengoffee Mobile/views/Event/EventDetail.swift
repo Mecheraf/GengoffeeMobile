@@ -19,17 +19,24 @@ var event = Event(
 
 struct EventDetail: View {
     var event: Event!
+    @Binding var selectedTab:FooterSelection
+
     
     var body: some View {
         VStack(){
             Text(event.place)
             Text(event.location)
             Text(dateToSQLDate(event.date))
-            RegisteredList(attendees: event.attendees ?? [])
+            if selectedTab == .checkIn  {
+                RegisteredList(attendees: event.attendees ?? [])
+            }
+            if selectedTab == .tables  {
+                AttendeesList(attendees: filterAttendees(attendees: event.attendees ?? []))
+            }
         }
     }
 }
 
 #Preview {
-    EventDetail(event:event)
+    EventDetail(event:event, selectedTab: .constant(.tables))
 }

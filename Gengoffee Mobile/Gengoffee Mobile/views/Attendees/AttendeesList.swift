@@ -1,14 +1,14 @@
 //
-//  RegisteredList.swift
+//  AttendeesList.swift
 //  Gengoffee Mobile
 //
-//  Created by Alan Mecheraf on 26/06/2024.
+//  Created by Alan Mecheraf on 04/07/2024.
 //
 
 import Foundation
 import SwiftUI
 
-struct RegisteredList: View {
+struct AttendeesList: View {
     @State var attendees: [Attendee]
     @State var addingAttendee:Bool = false
     
@@ -16,9 +16,9 @@ struct RegisteredList: View {
         NavigationSplitView {
             List(Array(attendees.enumerated()), id: \.offset) { index, attendee in
                 NavigationLink {
-                    RegisteredDetail(attendee:attendee)
+                    AttendeesDetails(attendee:attendee)
                 } label: {
-                    RegisteredRow(attendee: attendee, newAttendee: $attendees[index])
+                    AttendeesRow(attendee: attendee, newAttendee: $attendees[index])
                 }
             }
         } detail: {
@@ -42,12 +42,9 @@ struct RegisteredList: View {
             }
         }
     }
-    
-    func addAttendee(){
-        print("Hello")
-    }
+
 }
 
 #Preview {
-    EventView(selectedTab: .constant(.checkIn))
+    EventView(selectedTab: .constant(.tables))
 }

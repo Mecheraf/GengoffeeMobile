@@ -1,24 +1,23 @@
 //
-//  EventContent.swift
+//  TablesView.swift
 //  Gengoffee Mobile
 //
-//  Created by Alan Mecheraf on 16/06/2024.
+//  Created by Alan Mecheraf on 04/07/2024.
 //
 
 import Foundation
 import SwiftUI
 
 
-struct EventView: View {
+struct TablesView: View {
     @State private var events: [Event]?
     @State private var attendees: [Attendee]?
-    @Binding var selectedTab:FooterSelection
 
     var body: some View {
         
         VStack{
             if let events {
-                EventList(events: events, selectedTab: $selectedTab)
+                EventList(events: events)
             } // if var events
         }
         .task {
@@ -32,7 +31,3 @@ struct EventView: View {
         } //task
     } //body
 } //struct
-
-#Preview {
-    EventView(selectedTab: .constant(.tables))
-}

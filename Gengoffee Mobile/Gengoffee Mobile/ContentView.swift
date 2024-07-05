@@ -10,15 +10,25 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @State var selectedTab:FooterSelection = .checkIn
     @Query private var items: [Item]
     @State private var attendees: [Attendee]?
 
 
     var body: some View {
         VStack{
-            EventView()
+            if selectedTab == .checkIn{
+                EventView(selectedTab: $selectedTab)
+            }
+            if selectedTab == .plus {
+                AddRegisterView()
+            }
+            if selectedTab == .tables{
+                EventView(selectedTab: $selectedTab)
+            }
         }
-        FooterComponent()
+        Spacer()
+        FooterComponent(selectedTab: $selectedTab )
     }
 }
 

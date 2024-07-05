@@ -89,14 +89,10 @@ func assignAttendeesToEvents(limit: Int, attendees: [Attendee]) async -> [Event]
         events.enumerated().forEach{ index, event in
             events[index].attendees = getAttendeesPerEvent(idEvent: events[index].id!, attendees: attendees)
         }
-        print("Hello: ", events)
     } catch {
         print(error)
     }
     return events
 }
 
-#Preview {
-    EventView()
-}
 

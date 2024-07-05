@@ -8,70 +8,93 @@
 import Foundation
 import SwiftUI
 
+enum FooterSelection:Int {
+    case checkIn = 1
+    case tables = 2
+    case plus = 3
+    
+}
+
 struct FooterComponent:View {
     @State var event = false;
     @State var user = false;
     @State var hello = true;
+    @Binding var selectedTab:FooterSelection
+
 
     
     var body : some View {
         
+        HStack(spacing:10){
+            Button {
+                selectedTab = .checkIn
+                print(selectedTab)
+            } label: {
+                ZStack {
+                    FooterButtonView(image: "checklist", text: "Check In", isActive: selectedTab == .checkIn)
+                }
+            }
+            Button {
+                selectedTab = .plus
+                print(selectedTab)
+            }label: {
+               VStack{
+                   ZStack{
+                       VStack(spacing: 3){
+                           RoundedRectangle(cornerRadius: 30)
+                               .frame(width: 60,height: 60)
+                               .foregroundColor(.blue)
+                       }
+                       VStack(spacing: 3){
+                           Image(systemName: "person.badge.plus").font(.title).foregroundColor(.white)
+                       }
+                   }.padding(EdgeInsets(top: (UIDevice.isIPad ? -21 : -23), leading: 0, bottom: 0, trailing: 0))
+                       Spacer()
+               }
+            }
+            Button {
+                selectedTab = .tables
+                print(selectedTab)
 
-        CustomHStack(widthWeights: [0.25, 0.25, 0.25, 0.25]){
-
-            Button{
-                event = true
-                user = false
-                hello = false
             } label: {
-                VStack(spacing: 6) {
-                    Image(systemName: "person.3")
-                    Text("Event")
-                }.frame(maxWidth: .infinity)
+                FooterButtonView(image: "table.furniture", text: "Tables", isActive: selectedTab == .tables)
             }
-            Button{
-                event = false
-                user = true
-                hello = true
-            } label: {
-                VStack(spacing: 6) {
-                    Image(systemName: "list.number")
-                    Text("List")
-                }.frame(maxWidth: .infinity)
-            }
-            
-            Button{
-                event = false
-                user = true
-                hello = true
-            } label: {
-                VStack(spacing: 6) {
-                    Image(systemName: "list.number")
-                    Text("Table")
-                }.frame(maxWidth: .infinity)
-            }
-            Button{
-                event = false
-                user = true
-                hello = true
-            } label: {
-                VStack(spacing: 6) {
-                    Image(systemName: "option")
-                    Text("Option")
-                }.frame(maxWidth: .infinity)
-            }
-
-           // if event {
-           //     GetEventsView()
-           // }
         }
-        .padding(.top, 10.0)
-        .border(Color.black)
+        .frame(height: 40)
+        
     }
     
     
 }
 
-#Preview {
-    FooterComponent()
+struct Footer_Previews: PreviewProvider {
+    static var previews: some View {
+        FooterComponent(selectedTab: .constant(.plus))
+    }
+}
+
+struct FooterButtonView: View {
+    
+    var image:String
+    var text:String
+    var isActive:Bool
+    
+    var body: some View {
+        HStack(spacing: 10){
+            GeometryReader{
+                geo in
+                VStack(spacing: UIDevice.isIPad ? 6 : 3){
+                    Rectangle()
+                        .frame(height: 0)
+                    Image(systemName:image)
+                        .resizable()
+                        .frame(width: UIDevice.isIPad ? 30 : 24,height: UIDevice.isIPad ? 30 : 24)
+                        .foregroundColor(isActive ? .blue : .gray)
+                    Text(text)
+                        .font(.caption)
+                        .foregroundColor(isActive ? .blue : .gray)
+                }
+            }
+        }
+    }
 }
