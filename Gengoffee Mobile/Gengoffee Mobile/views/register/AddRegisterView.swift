@@ -12,7 +12,7 @@ import SwiftData
 
 struct AddRegisterView: View {
     
-    var idEvent: Int = 127
+    var idEvent: Int = 128
     
     @State private var firstname: String = "Daigo"
     @State private var lastname: String = "Lopes"
@@ -34,7 +34,6 @@ struct AddRegisterView: View {
 
     var body: some View {
         VStack {
-            
             Form {
                 Section("User Informations") {
                     TextField("First name", text: $firstname)
@@ -128,33 +127,33 @@ struct AddRegisterView: View {
             }
         }label: {
             VStack(spacing: 6) {
-                Image(systemName: "icloud.and.arrow.up.fill")
-                Text("Create Event")
+                Image(systemName: "person.badge.plus.fill")
+                Text("Add User")
             }.frame(maxWidth: .infinity)
         }
-//        Button{
-//            do {
-//                let message = User(
-//                    id: idEvent,
-//                    firstname: firstname,
-//                    lastname: lastname,
-//                    phone: phone,
-//                    diet: diet,
-//                    mail: mail,
-//                    nationality: nationality,
-//                    birthdate: dateWithoutTime(date: birthDate),
-//                    fr:french,
-//                    en:english,
-//                    jp:japanese
-//                )
-//                print(message)
-//            }
-//        }label: {
-//            VStack(spacing: 6) {
-//                Image(systemName: "list.number")
-//                Text("Print")
-//            }.frame(maxWidth: .infinity)
-//        }
+        Button{
+            do {
+                let message = User(
+                    id: idEvent,
+                    firstname: firstname,
+                    lastname: lastname,
+                    phone: phone,
+                    diet: diet,
+                    mail: mail,
+                    nationality: nationality,
+                    birthdate: dateWithoutTime(date: birthDate),
+                    fr:french,
+                    en:english,
+                    jp:japanese
+                )
+                print(message)
+            }
+        }label: {
+            VStack(spacing: 6) {
+                Image(systemName: "list.number")
+                Text("Print")
+            }.frame(maxWidth: .infinity)
+        }
     } //body
 } //struct
 

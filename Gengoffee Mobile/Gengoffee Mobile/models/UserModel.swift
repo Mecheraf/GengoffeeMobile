@@ -24,6 +24,7 @@ struct Attendee: Codable {
     let diet: String?
     var paid:Int
     let idEvent: Int
+    var tablenumber:Int
 }
 
 struct User: Codable {

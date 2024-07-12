@@ -40,6 +40,17 @@ struct RegisteredList: View {
                     Text("Update")
                 }.frame(maxWidth: .infinity)
             }
+//            Button{
+//                do {
+//                    print(attendees)
+//                }
+//            }label: {
+//                VStack(spacing: 6) {
+//                    Image(systemName: "icloud.and.arrow.up")
+//                    Text("Print")
+//                }.frame(maxWidth: .infinity)
+//            }
+
         }
     }
     

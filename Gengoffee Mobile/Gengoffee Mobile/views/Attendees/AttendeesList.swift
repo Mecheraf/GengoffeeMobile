@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AttendeesList: View {
     @State var attendees: [Attendee]
-    @State var addingAttendee:Bool = false
     
     var body: some View {
         NavigationSplitView {
@@ -22,7 +21,7 @@ struct AttendeesList: View {
                 }
             }
         } detail: {
-            Text("Select a event")
+            Text("Select an attendee")
         }
         VStack {
             Button{
@@ -30,7 +29,7 @@ struct AttendeesList: View {
                     let message = [
                         "attendees": attendees
                     ]
-                    updateAttendee(message: message, completion: { success in
+                    updateTableAttendee(message: message, completion: { success in
                         print(success)
                     })
                 }
@@ -40,6 +39,16 @@ struct AttendeesList: View {
                     Text("Update")
                 }.frame(maxWidth: .infinity)
             }
+//            Button{
+//                do {
+//                    print(attendees)
+//                }
+//            }label: {
+//                VStack(spacing: 6) {
+//                    Image(systemName: "icloud.and.arrow.up")
+//                    Text("Print")
+//                }.frame(maxWidth: .infinity)
+//            }
         }
     }
 

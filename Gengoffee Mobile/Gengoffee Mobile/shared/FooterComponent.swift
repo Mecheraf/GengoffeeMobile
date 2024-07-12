@@ -12,6 +12,8 @@ enum FooterSelection:Int {
     case checkIn = 1
     case tables = 2
     case plus = 3
+    case createEvent = 4
+
     
 }
 
@@ -19,6 +21,7 @@ struct FooterComponent:View {
     @State var event = false;
     @State var user = false;
     @State var hello = true;
+    
     @Binding var selectedTab:FooterSelection
 
 
@@ -28,7 +31,13 @@ struct FooterComponent:View {
         HStack(spacing:10){
             Button {
                 selectedTab = .checkIn
-                print(selectedTab)
+            } label: {
+                ZStack {
+                    FooterButtonView(image: "checklist", text: "Check In", isActive: selectedTab == .checkIn)
+                }
+            }
+            Button {
+                selectedTab = .checkIn
             } label: {
                 ZStack {
                     FooterButtonView(image: "checklist", text: "Check In", isActive: selectedTab == .checkIn)
@@ -36,7 +45,6 @@ struct FooterComponent:View {
             }
             Button {
                 selectedTab = .plus
-                print(selectedTab)
             }label: {
                VStack{
                    ZStack{
@@ -48,17 +56,23 @@ struct FooterComponent:View {
                        VStack(spacing: 3){
                            Image(systemName: "person.badge.plus").font(.title).foregroundColor(.white)
                        }
-                   }.padding(EdgeInsets(top: (UIDevice.isIPad ? -21 : -23), leading: 0, bottom: 0, trailing: 0))
-                       Spacer()
+                   }
+                   Spacer()
                }
             }
             Button {
                 selectedTab = .tables
-                print(selectedTab)
 
             } label: {
                 FooterButtonView(image: "table.furniture", text: "Tables", isActive: selectedTab == .tables)
             }
+            Button {
+                selectedTab = .createEvent
+
+            } label: {
+                FooterButtonView(image: "plus.app", text: "New Event", isActive: selectedTab == .createEvent)
+            }
+
         }
         .frame(height: 40)
         

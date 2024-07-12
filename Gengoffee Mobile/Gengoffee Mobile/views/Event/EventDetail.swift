@@ -31,9 +31,10 @@ struct EventDetail: View {
                 RegisteredList(attendees: event.attendees ?? [])
             }
             if selectedTab == .tables  {
-                AttendeesList(attendees: filterAttendees(attendees: event.attendees ?? []))
+                TableList(attendees: filterAttendees(attendees: event.attendees ?? []))
             }
         }
+        
     }
 }
 

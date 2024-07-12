@@ -26,6 +26,9 @@ struct ContentView: View {
             if selectedTab == .tables{
                 EventView(selectedTab: $selectedTab)
             }
+            if selectedTab == .createEvent{
+                CreateEventView()
+            }
         }
         Spacer()
         FooterComponent(selectedTab: $selectedTab )
