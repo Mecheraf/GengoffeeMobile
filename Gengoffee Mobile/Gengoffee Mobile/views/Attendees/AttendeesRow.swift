@@ -12,15 +12,15 @@ struct AttendeesRow: View {
     @State var attendee: Attendee
     @Binding var newAttendee: Attendee
 
-    let prices:[Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    let tables:[Int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     
     var body: some View {
         HStack {
             Text(attendee.firstname)
-            Text(attendee.lastname)
+            Text(attendee.lastname.first?.description ?? "")
             Spacer()
-            Picker("", selection: $newAttendee.paid){
-                ForEach(prices, id: \.self) { value in
+            Picker("", selection: $newAttendee.tablenumber){
+                ForEach(tables, id: \.self) { value in
                     Text(String(value))
                 }
             }
@@ -29,3 +29,6 @@ struct AttendeesRow: View {
     }
 }
 
+//#Preview {
+//    EventView(selectedTab: .constant(.tables))
+//}

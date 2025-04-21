@@ -9,8 +9,9 @@ import Foundation
 import SwiftUI
 
 struct AttendeesList: View {
+    @State var session:MainModel
+
     @State var attendees: [Attendee]
-    @State var addingAttendee:Bool = false
     
     var body: some View {
         NavigationSplitView {
@@ -22,7 +23,7 @@ struct AttendeesList: View {
                 }
             }
         } detail: {
-            Text("Select a event")
+            Text("Select an attendee")
         }
         VStack {
             Button{
@@ -30,7 +31,7 @@ struct AttendeesList: View {
                     let message = [
                         "attendees": attendees
                     ]
-                    updateAttendee(message: message, completion: { success in
+                    updateTableAttendee(message: message, token:session.token, completion: { success in
                         print(success)
                     })
                 }
@@ -43,8 +44,4 @@ struct AttendeesList: View {
         }
     }
 
-}
-
-#Preview {
-    EventView(selectedTab: .constant(.tables))
 }

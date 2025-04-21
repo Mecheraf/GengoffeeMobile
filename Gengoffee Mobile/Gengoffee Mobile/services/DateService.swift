@@ -12,7 +12,7 @@ func dateToSQLDate(_ string: String) -> String {
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     guard let date = dateFormatter.date(from: string) else { return "" }
-    dateFormatter.dateFormat = "MM/dd/yy, hh:mma"
+    dateFormatter.dateFormat = "dd/MM/yy"
     return dateFormatter.string(from: date)
 }
 

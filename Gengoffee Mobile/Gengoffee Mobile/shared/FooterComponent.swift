@@ -8,17 +8,20 @@
 import Foundation
 import SwiftUI
 
-enum FooterSelection:Int {
+enum FooterSelection:Int, Codable {
     case checkIn = 1
     case tables = 2
     case plus = 3
-    
+    case createEvent = 4
+    case tablePlan = 5
+    case settings = 6
 }
 
 struct FooterComponent:View {
     @State var event = false;
     @State var user = false;
     @State var hello = true;
+    
     @Binding var selectedTab:FooterSelection
 
 
@@ -28,15 +31,19 @@ struct FooterComponent:View {
         HStack(spacing:10){
             Button {
                 selectedTab = .checkIn
-                print(selectedTab)
             } label: {
                 ZStack {
                     FooterButtonView(image: "checklist", text: "Check In", isActive: selectedTab == .checkIn)
                 }
             }
             Button {
+                selectedTab = .tables
+
+            } label: {
+                FooterButtonView(image: "table.furniture", text: "Tables", isActive: selectedTab == .tables)
+            }
+            Button {
                 selectedTab = .plus
-                print(selectedTab)
             }label: {
                VStack{
                    ZStack{
@@ -48,30 +55,39 @@ struct FooterComponent:View {
                        VStack(spacing: 3){
                            Image(systemName: "person.badge.plus").font(.title).foregroundColor(.white)
                        }
-                   }.padding(EdgeInsets(top: (UIDevice.isIPad ? -21 : -23), leading: 0, bottom: 0, trailing: 0))
-                       Spacer()
+                   }
+                   Spacer()
                }
             }
+            
             Button {
-                selectedTab = .tables
-                print(selectedTab)
+                selectedTab = .createEvent
 
             } label: {
-                FooterButtonView(image: "table.furniture", text: "Tables", isActive: selectedTab == .tables)
+                FooterButtonView(image: "plus.app", text: "New Event", isActive: selectedTab == .createEvent)
             }
-        }
-        .frame(height: 40)
-        
-    }
-    
-    
-}
+            Button {
+                selectedTab = .settings
 
-struct Footer_Previews: PreviewProvider {
-    static var previews: some View {
-        FooterComponent(selectedTab: .constant(.plus))
-    }
-}
+            } label: {
+                FooterButtonView(image: "gear", text: "Settings", isActive: selectedTab == .settings)
+            }
+
+        }
+        .ignoresSafeArea(.keyboard)
+        .frame(height: 40)
+    }// Body
+} //View
+
+//#Preview {
+//    struct Preview: View {
+//        @State var tmpAttendees:[Attendee] = []
+//        var body: some View {
+//            AddLocalRegisterView(localAttendees:$tmpAttendees)
+//        }
+//    }
+//    return Preview()
+//}
 
 struct FooterButtonView: View {
     

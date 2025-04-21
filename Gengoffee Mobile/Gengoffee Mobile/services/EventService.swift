@@ -8,23 +8,11 @@
 import Foundation
 import SwiftUI
 
-
-func getEventsOld(limit:Int) async throws -> [Event] {
-    
-    @StateObject var golbalAPI = APIModel()
-    
-    let url = URL(string: golbalAPI.API_Dev+"getNextEvents")!
-    let (data, _) = try await URLSession.shared.data(from: url)
-    let wrapper = try JSONDecoder().decode([Event].self, from: data)
-    return wrapper
-}
-
 func getEvents(limit:Int) async throws -> [Event] {
     
-    @StateObject var golbalAPI = APIModel()
+    @State var globalAPI:APIModel = APIModel()
+    var components = URLComponents(string: globalAPI.API_Prod+"getNextEvents")!
     
-    var components = URLComponents(string: golbalAPI.API_Dev+"getNextEvents")!
-
     components.queryItems = [
         URLQueryItem(name: "limit", value: String(limit))
     ]
@@ -38,12 +26,11 @@ func getEvents(limit:Int) async throws -> [Event] {
 }
 
 
-
-func addEvent(message: Event, completion: @escaping (_ success: Bool) -> Void){
+func addEvent(message: Event, token:String, completion: @escaping (_ success: Bool) -> Void){
     
     @StateObject var golbalAPI = APIModel()
     
-    let url = URL(string: golbalAPI.API_Dev+"insertevent")!
+    let url = URL(string: golbalAPI.API_Prod+"insertevent")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     
@@ -53,18 +40,26 @@ func addEvent(message: Event, completion: @escaping (_ success: Bool) -> Void){
         "application/json",
         forHTTPHeaderField: "Content-Type"
     )
+    request.setValue(
+        "Bearer \(token)",
+        forHTTPHeaderField: "Authorization"
+    )
     
-    var success:Bool!
-    
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        let statusCode = (response as! HTTPURLResponse).statusCode
-        
-        if statusCode == 200 {
-            success = true
-            print("SUCCESS")
-        } else {
-            success = false
-            print("FAILURE")
+    var success:Bool! = false
+
+    let task = URLSession.shared.dataTask(with: request)
+    { data, response, error in
+        if
+            error == nil,
+            let statusCode = (response as? HTTPURLResponse)?.statusCode
+        {
+            if statusCode == 200 {
+                success = true
+                print("SUCCESS")
+            } else {
+                success = false
+                print("FAILURE")
+            }
         }
         completion(success)
     }
@@ -74,7 +69,7 @@ func addEvent(message: Event, completion: @escaping (_ success: Bool) -> Void){
 func getAttendeesPerEvent(idEvent:Int, attendees: [Attendee]) -> [Attendee] {
     var result: [Attendee] = []
     attendees.forEach{ attendee in
-        if(attendee.idEvent == idEvent){
+        if(attendee.idEvent == idEvent || attendee.idEvent == 0){
             result.append(attendee)
         }
     }
@@ -82,7 +77,6 @@ func getAttendeesPerEvent(idEvent:Int, attendees: [Attendee]) -> [Attendee] {
 }
 
 func assignAttendeesToEvents(limit: Int, attendees: [Attendee]) async -> [Event]{
-    
     var events:[Event] = []
     do {
         events = try await getEvents(limit: limit)
@@ -94,5 +88,3 @@ func assignAttendeesToEvents(limit: Int, attendees: [Attendee]) async -> [Event]
     }
     return events
 }
-
-
