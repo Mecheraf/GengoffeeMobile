@@ -9,15 +9,19 @@ import Foundation
 import SwiftUI
 
 struct RegisteredRow: View {
-    @State var attendee: Attendee
     @Binding var newAttendee: Attendee
+    @Binding var updatedAttendees:[Attendee]
 
     let prices:[Int] = [0, 10, 11]
     
     var body: some View {
         HStack {
-            Text(attendee.firstname)
-            Text(attendee.lastname)
+            HStack {
+                Text(newAttendee.firstname)
+                Text(newAttendee.lastname)
+            }
+            .foregroundColor(selectColor(nat: newAttendee.nationality))
+
             Spacer()
             Picker("", selection: $newAttendee.paid){
                 ForEach(prices, id: \.self) { value in
@@ -26,6 +30,20 @@ struct RegisteredRow: View {
             }
             .pickerStyle(.segmented)
             .frame(width: 150)
+            .onChange(of: newAttendee.paid) {
+                addUpdatedAttendee(newAttendee: newAttendee, list: &updatedAttendees)
+            }
         }
     }
+}
+
+#Preview {
+    struct Preview: View {
+        @State var attendees:[Attendee] = setAttendees
+        @State var session: MainModel = MainModel(events: [blankEvent], attendees: getLocalAttendees(), selectedTab: .checkIn, token:"")
+        var body: some View {
+            RegisteredList(session: session)
+        }
+    }
+    return Preview()
 }

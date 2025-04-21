@@ -20,6 +20,6 @@ struct AttendeesDetails: View {
     }
 }
 
-#Preview {
-    EventView(selectedTab: .constant(.tables))
-}
+//#Preview {
+//    EventView(selectedTab: .constant(.tables))
+//}

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct TableList:View {
+    @State var session:MainModel
     @State var attendees: [Attendee]
     @State var tables:[TableModel] = []
     
@@ -17,11 +18,10 @@ struct TableList:View {
             List(Array(tables.enumerated()), id: \.offset) { index, table in
                 if(table.attendees.count > 0) {
                     NavigationLink {
-                        AttendeesList(attendees: tables[index].attendees)
+                        AttendeesList(session: session, attendees: tables[index].attendees)
                     } label: {
                         TableRow(tableNumber: table.number, numberOfAttendees: table.attendees.count)
                     }
-                    
                 }
             }
             .task {
@@ -35,3 +35,6 @@ struct TableList:View {
     }
 }
 
+//#Preview {
+//    TableList(attendees: [alan, mayu, salim], tables: [table1, table7])
+//}

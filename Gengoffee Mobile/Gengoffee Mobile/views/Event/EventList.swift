@@ -1,6 +1,6 @@
 //
 //  EventList.swift
-//  Gengoffee Mobile
+//  ] Mobile
 //
 //  Created by Alan Mecheraf on 26/06/2024.
 //
@@ -8,47 +8,49 @@
 import Foundation
 import SwiftUI
 
-var events:[Event] = [
-    Event(
-        id: 128,
-        type: "jp",
-        date: "2024-07-07T16:00:00.000Z",
-        place: "Les Berthom",
-        subscribe: 1,
-        location: "PARIS"
-    ),
-    Event(
-        id: 129,
-        type: "jp",
-        date: "2024-07-07T16:00:00.000Z",
-        place: "Food Hall Blast",
-        subscribe: 1,
-        location: "東京"
-    )
-]
 
 
 struct EventList: View {
-    var events: [Event]
-    @Binding var selectedTab:FooterSelection
+    @Binding var session:MainModel
     
     var body: some View {
-        NavigationSplitView {
-            List(events, id: \.id) { event in
-                NavigationLink {
-                    EventDetail(event:event, selectedTab: $selectedTab)
-                } label: {
-                    EventRow(event: event)
+        VStack {
+            List(session.events, id: \.id) { event in
+                if(session.events.count > 0){
+                    NavigationLink {
+                        EventDetail(event:event, session:$session)
+                    } label: {
+                        EventRow(event: event)
+                    }
+                    
+                } else if (session.events.count == 0 && session.selectedTab == .tables) {
+                    NavigationLink {
+                        EventDetail(event:blankEvent,  session:$session)
+                    } label: {
+                        EventRow(event: blankEvent)
+                    }
                 }
             }
-            .navigationTitle("Events")
-        } detail: {
-            Text("Select a event")
         }
     }
 }
 
 
+//#Preview {
+//    struct Preview: View {
+//        @State var session: MainModel = MainModel(events: [], attendees: [], selectedTab: .checkIn, token:"")
+//        var body: some View {
+//            EventList(session: $session)
+//        }
+//    }
+//    return Preview()
+//}
+
 #Preview {
-    EventList(events: events, selectedTab: .constant(.tables))
+    struct Preview: View {
+        var body: some View {
+            ContentView()
+        }
+    }
+    return Preview()
 }

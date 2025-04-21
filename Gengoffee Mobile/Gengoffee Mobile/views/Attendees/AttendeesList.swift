@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct AttendeesList: View {
+    @State var session:MainModel
+
     @State var attendees: [Attendee]
     
     var body: some View {
@@ -29,7 +31,7 @@ struct AttendeesList: View {
                     let message = [
                         "attendees": attendees
                     ]
-                    updateTableAttendee(message: message, completion: { success in
+                    updateTableAttendee(message: message, token:session.token, completion: { success in
                         print(success)
                     })
                 }
@@ -39,21 +41,7 @@ struct AttendeesList: View {
                     Text("Update")
                 }.frame(maxWidth: .infinity)
             }
-//            Button{
-//                do {
-//                    print(attendees)
-//                }
-//            }label: {
-//                VStack(spacing: 6) {
-//                    Image(systemName: "icloud.and.arrow.up")
-//                    Text("Print")
-//                }.frame(maxWidth: .infinity)
-//            }
         }
     }
 
-}
-
-#Preview {
-    EventView(selectedTab: .constant(.tables))
 }

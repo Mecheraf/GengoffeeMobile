@@ -10,14 +10,12 @@ import Foundation
 import SwiftUI
 
 struct CreateEventView: View {
-    @State var event: Event?
-    @State var events: [Event]?
+    @State var session:MainModel
     var firstname: String = ""
     @State private var place: String = ""
     @State private var type: String = "fr"
     @State private var location: String = "PARIS"
-    @State private var date =  Date()
-    var f = Date.FormatStyle.dateTime
+    @State private var date =  Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: Date())!
 
 
 
@@ -67,8 +65,6 @@ struct CreateEventView: View {
                 }
                 .navigationTitle("Create Event")
                 .pickerStyle(.wheel)
-
-                
                 Button{
                     do {
                         self.message.type = type
@@ -76,37 +72,37 @@ struct CreateEventView: View {
                         self.message.place = place
                         self.message.date = dateToCET(date:date)
 
-
-                        addEvent(message: message, completion: { success in
+                        addEvent(message: message, token:session.token, completion: { success in
                             print(success)
                         })
                     }
                 }label: {
                     VStack(spacing: 6) {
                         Image(systemName: "icloud.and.arrow.up.fill")
-                        Text("Create Event")
+                        
+                        if(self.place.isEmpty){
+                            Text("Fill the form")
+                                .foregroundColor(.gengoffeeRed)
+                        } else {
+                            Text("Create Event")
+                        }
                     }.frame(maxWidth: .infinity)
                 }
-                Button{
-                    do {
-                        self.message.type = type
-                        self.message.location = location
-                        self.message.place = place
-                        print(dateToCET(date:date))
-                        print(self.message)
-                    }
-                }label: {
-                    VStack(spacing: 6) {
-                        Image(systemName: "list.number")
-                        Text("Print")
-                    }.frame(maxWidth: .infinity)
-                }
+                .disabled(self.place.isEmpty)
+                
+
             }
         }
     
 }
 
 #Preview {
-    CreateEventView()
+    struct Preview: View {
+        @State var session: MainModel = MainModel(events: [blankEvent], attendees: getLocalAttendees(), selectedTab: .checkIn, token:"")
+        var body: some View {
+            CreateEventView(session: session)
+        }
+    }
+    return Preview()
 }
 

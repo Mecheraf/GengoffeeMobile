@@ -17,26 +17,51 @@ struct Language: Codable {
     let level:String
 }
 
-struct Attendee: Codable {
-    let idUser:Int
-    let firstname: String
-    let lastname: String
-    let diet: String?
-    var paid:Int
-    let idEvent: Int
-    var tablenumber:Int
+
+
+struct User: Codable, Hashable, Identifiable {
+    let id: Int?
+    var firstname: String = ""
+    var lastname: String = ""
+    var phone: String = ""
+    var diet: String = ""
+    var mail: String = ""
+    var nationality: String = "fr"
+    var birthdate: Date = Date()
+    var fr: Int = 0
+    var en: Int = 0
+    var jp: Int = 0
+    
+    init(){
+        id = 0
+        firstname = ""
+        lastname = ""
+        nationality = "fr"
+        birthdate = Date()
+        fr = 0
+        en = 0
+        jp = 0
+        phone = ""
+        mail = ""
+        diet = "None"
+    }
 }
 
-struct User: Codable {
-    let id: Int?
-    let firstname: String
-    let lastname: String
-    let phone: String
-    let diet: String
-    let mail: String
-    let nationality: String
-    let birthdate: String
-    let fr: Int
-    let en: Int
-    let jp: Int
+struct newUser: Codable {
+    let idEvent: Int
+    var firstname: String
+    var lastname: String
+    var phone: String
+    var diet: String
+    var mail: String
+    var nationality: String
+    var birthdate: String
+    var fr: Int
+    var en: Int
+    var jp: Int
+}
+
+struct UsersToEvent : Codable {
+    let idEvent : Int
+    let users: [Int]
 }

@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-enum FooterSelection:Int {
+enum FooterSelection:Int, Codable {
     case checkIn = 1
     case tables = 2
     case plus = 3
     case createEvent = 4
-
-    
+    case tablePlan = 5
+    case settings = 6
 }
 
 struct FooterComponent:View {
@@ -37,11 +37,10 @@ struct FooterComponent:View {
                 }
             }
             Button {
-                selectedTab = .checkIn
+                selectedTab = .tables
+
             } label: {
-                ZStack {
-                    FooterButtonView(image: "checklist", text: "Check In", isActive: selectedTab == .checkIn)
-                }
+                FooterButtonView(image: "table.furniture", text: "Tables", isActive: selectedTab == .tables)
             }
             Button {
                 selectedTab = .plus
@@ -60,32 +59,35 @@ struct FooterComponent:View {
                    Spacer()
                }
             }
-            Button {
-                selectedTab = .tables
-
-            } label: {
-                FooterButtonView(image: "table.furniture", text: "Tables", isActive: selectedTab == .tables)
-            }
+            
             Button {
                 selectedTab = .createEvent
 
             } label: {
                 FooterButtonView(image: "plus.app", text: "New Event", isActive: selectedTab == .createEvent)
             }
+            Button {
+                selectedTab = .settings
+
+            } label: {
+                FooterButtonView(image: "gear", text: "Settings", isActive: selectedTab == .settings)
+            }
 
         }
+        .ignoresSafeArea(.keyboard)
         .frame(height: 40)
-        
-    }
-    
-    
-}
+    }// Body
+} //View
 
-struct Footer_Previews: PreviewProvider {
-    static var previews: some View {
-        FooterComponent(selectedTab: .constant(.plus))
-    }
-}
+//#Preview {
+//    struct Preview: View {
+//        @State var tmpAttendees:[Attendee] = []
+//        var body: some View {
+//            AddLocalRegisterView(localAttendees:$tmpAttendees)
+//        }
+//    }
+//    return Preview()
+//}
 
 struct FooterButtonView: View {
     

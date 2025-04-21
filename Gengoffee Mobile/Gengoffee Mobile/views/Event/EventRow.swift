@@ -19,7 +19,7 @@ var eventest = Event(
 
 var eventoust = Event(
     id: 128,
-    type: "jp",
+    type: "en",
     date: "2024-07-07T16:00:00.000Z",
     place: "Food Hall Blast",
     subscribe: 1,
@@ -36,6 +36,7 @@ struct EventRow: View {
             Text(event.location)
             Text(dateToSQLDate(event.date))
         }
+        .foregroundColor(selectColor(nat: event.type))
     }
 }
 

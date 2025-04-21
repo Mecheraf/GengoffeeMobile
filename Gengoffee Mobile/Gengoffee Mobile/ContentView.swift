@@ -8,34 +8,69 @@
 import SwiftUI
 import SwiftData
 
+
+var globalAPI = APIModel()
+
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @State var selectedTab:FooterSelection = .checkIn
-    @Query private var items: [Item]
-    @State private var attendees: [Attendee]?
-
-
+    @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortArray(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
+    let defaults = UserDefaults.standard
+    
     var body: some View {
-        VStack{
-            if selectedTab == .checkIn{
-                EventView(selectedTab: $selectedTab)
+        NavigationView {
+            if(session.token.count == 0){
+                LoginView(session: $session)
+            } else {
+                VStack {
+                    switch session.selectedTab {
+                    case .checkIn, .tables:
+                        EventList(session: $session)
+                    case .plus:
+                        AddRegisterView(session: session)
+                    case .createEvent:
+                        CreateEventView(session: session)
+                    case .settings:
+                        Settings(session: $session)
+                    default:
+                        EventList(session: $session)
+                    }
+//                Button{
+//                    do {
+//                        print(session)
+//
+//                    }
+//                } label: {PrintButton(icon: "person.fill.badge.plus", text: "Print")
+//                }
+                Spacer()
+                    FooterComponent(selectedTab: $session.selectedTab)
+                    .padding([.top], 20)
+                }
+                .task {
+                    do {
+                        if(session.token  != "1"){
+                            getAttendees(token: session.token, finished: { success in
+                                Task {
+                                    session.attendees = sortArray(arr:fusionListAttendees(arr1: try await getTemporaryAttendees(), arr2: success))
+                                    session.events = await assignAttendeesToEvents(limit:5, attendees: session.attendees)
+                                }
+                            })
+                        }
+                    }
+                } //task
             }
-            if selectedTab == .plus {
-                AddRegisterView()
-            }
-            if selectedTab == .tables{
-                EventView(selectedTab: $selectedTab)
-            }
-            if selectedTab == .createEvent{
-                CreateEventView()
-            }
+            
         }
-        Spacer()
-        FooterComponent(selectedTab: $selectedTab )
+        .ignoresSafeArea(.keyboard)
+        
     }
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    struct Preview: View {
+        var body: some View {
+            ContentView()
+        }
+    }
+    return Preview()
 }
+
