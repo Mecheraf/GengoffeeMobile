@@ -32,7 +32,7 @@ struct EventDisplay: View {
                         showAlert = true
                     }
                 }
-            } label: { PrintButton(icon:"", text: event.place + " " + event.location + " " + dateToSQLDate(event.date))
+            } label: { designButton(icon:"", text: event.place + " " + event.location + " " + dateToSQLDate(event.date))
             }
             if(activeAlert == .second){
                 Text("\((timeRemaining/60)%16):\(String(format: "%02d",(timeRemaining%60)%60))")

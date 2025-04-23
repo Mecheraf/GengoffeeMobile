@@ -21,11 +21,6 @@ struct Settings:View {
                 } label: {Text("Reset Attendees")}
             }
             LogoutView(token:$session.token)
-            Button("Print" , action: {
-                Task {
-                    print(session.token)
-                }
-            })
             }
             .navigationTitle("Settings")
             .alert(isPresented: $showAlert) {

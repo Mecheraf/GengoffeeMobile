@@ -36,7 +36,7 @@ struct TablePlanView: View {
 
                                                 }
                                             }
-                                        } label: { PrintButton(icon: "minus.square", text: "Delete table")
+                                        } label: { designButton(icon: "minus.square", text: "Delete table")
                                         }
                                     })
                             }

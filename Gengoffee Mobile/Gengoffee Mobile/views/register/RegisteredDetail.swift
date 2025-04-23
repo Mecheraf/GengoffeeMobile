@@ -43,7 +43,7 @@ struct RegisteredDetail: View {
                     addUpdatedAttendee(newAttendee: attendee, list: &attendees)
 
                 }
-            }label: {PrintButton(icon: "person.fill.badge.plus", text: "Update")}
+            }label: {designButton(icon: "person.fill.badge.plus", text: "Update")}
         }
         
     }

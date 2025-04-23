@@ -1,5 +1,5 @@
 //
-//  PrintButton.swift
+//  designButton.swift
 //  Gengoffee Mobile
 //
 //  Created by Alan Mecheraf on 06/02/2025.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct PrintButton:View {
+struct designButton:View {
     @State var icon:String
     @State var text:String
 

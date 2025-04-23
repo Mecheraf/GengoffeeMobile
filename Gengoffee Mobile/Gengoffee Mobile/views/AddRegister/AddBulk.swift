@@ -26,7 +26,7 @@ struct AddBulk: View {
                 do {
                     text = UIPasteboard.general.string ?? ""
                 }
-            }label: {PrintButton(icon: "arrow.right.doc.on.clipboard", text: "Paste Clipboard")}
+            }label: {designButton(icon: "arrow.right.doc.on.clipboard", text: "Paste Clipboard")}
             
             Text("Add Bulk")
                 .font(.system(size: 36))
@@ -54,7 +54,7 @@ struct AddBulk: View {
                     }
                 }
                 
-            }label: {PrintButton(icon: "person.fill.badge.plus", text: "Add Users")}
+            }label: {designButton(icon: "person.fill.badge.plus", text: "Add Users")}
         }
         .onTapGesture {
             hideKeyboard()

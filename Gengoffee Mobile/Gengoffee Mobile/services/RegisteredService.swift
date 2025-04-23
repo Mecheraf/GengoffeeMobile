@@ -127,7 +127,6 @@ func updateAttendee(message: [Attendee], token:String, completion: @escaping (_ 
     
     var success:Bool! = false
 
-    //print(data)
     let task = URLSession.shared.dataTask(with: request)
     { data, response, error in
         if

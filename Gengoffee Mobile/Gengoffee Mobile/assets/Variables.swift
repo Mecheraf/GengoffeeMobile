@@ -248,25 +248,6 @@ var adrien2 = Attendee(
 var setAttendees:[Attendee] = [alan, mayu, salim, vincent, daigo, shiori, adrien, steve, alan2, mayu2, salim2, vincent2, daigo2, shiori2, adrien2]
 var setAttendeesShort:[Attendee] = [alan, mayu, salim, vincent, daigo, shiori, adrien]
 
-
-//Tables
-var table1 = TableModel(
-    number: 1,
-    attendees: []
-)
-
-var table3 = TableModel(
-    number: 3,
-    attendees: []
-)
-
-var table7 = TableModel(
-    number: 7,
-    attendees: []
-)
-
-var setTables:[TableModel] = [table1, table3, table7]
-
 let tableGridLayout = Array(repeating: GridItem(.flexible(), spacing: 0), count: 2)
 let waitingGridLayout = Array(repeating: GridItem(.flexible(), spacing: 0), count: 4)
 

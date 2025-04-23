@@ -38,7 +38,6 @@ struct LoginView: View {
                 Button("Offline mode" , action: {
                     do {
                         session = MainModel(events: [blankEvent], attendees: getLocalAttendees(), selectedTab: .checkIn, token:"1")
-                        print(session)
                     }
                 })
             }

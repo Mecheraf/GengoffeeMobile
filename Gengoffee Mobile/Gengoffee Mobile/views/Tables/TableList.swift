@@ -34,7 +34,3 @@ struct TableList:View {
         }
     }
 }
-
-//#Preview {
-//    TableList(attendees: [alan, mayu, salim], tables: [table1, table7])
-//}

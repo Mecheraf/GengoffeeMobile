@@ -7,17 +7,11 @@
 
 import Foundation
 
-struct WrapperAttendee: Codable {
-    let attendees: [Attendee]
-}
-
 struct Language: Codable {
     let idUser:Int
     let name:String
     let level:String
 }
-
-
 
 struct User: Codable, Hashable, Identifiable {
     let id: Int?

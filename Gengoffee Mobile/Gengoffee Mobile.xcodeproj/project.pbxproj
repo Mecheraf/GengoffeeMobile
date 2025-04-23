@@ -21,9 +21,7 @@
 		3395A8522C36E8550057CA11 /* AttendeesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8512C36E8540057CA11 /* AttendeesRow.swift */; };
 		3395A8542C36E8610057CA11 /* AttendeesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8532C36E8610057CA11 /* AttendeesDetails.swift */; };
 		3395A8592C36EEF10057CA11 /* AttendeesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8582C36EEF10057CA11 /* AttendeesService.swift */; };
-		3395A85B2C38B1AF0057CA11 /* TableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A85A2C38B1AF0057CA11 /* TableList.swift */; };
 		3395A85D2C38B59A0057CA11 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A85C2C38B59A0057CA11 /* TableModel.swift */; };
-		3395A85F2C393AE70057CA11 /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A85E2C393AE70057CA11 /* TableRow.swift */; };
 		3395A8612C41DAF80057CA11 /* ColorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8602C41DAF80057CA11 /* ColorService.swift */; };
 		33A217E22C42D2A800C10E25 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A217E12C42D2A800C10E25 /* UserService.swift */; };
 		33A217E42C49CE7400C10E25 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A217E32C49CE7400C10E25 /* HeaderComponent.swift */; };
@@ -36,7 +34,6 @@
 		33B2BE4F2C1DCDAD00E5B837 /* Gengoffee_MobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE4E2C1DCDAD00E5B837 /* Gengoffee_MobileUITests.swift */; };
 		33B2BE512C1DCDAD00E5B837 /* Gengoffee_MobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE502C1DCDAD00E5B837 /* Gengoffee_MobileUITestsLaunchTests.swift */; };
 		33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE5E2C1DD03D00E5B837 /* FooterComponent.swift */; };
-		33B2BE632C1DD0B500E5B837 /* FooterDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE622C1DD0B500E5B837 /* FooterDesign.swift */; };
 		33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE642C1EFF0C00E5B837 /* EventService.swift */; };
 		33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE672C1EFF6F00E5B837 /* EventModel.swift */; };
 		33B2BE6D2C2479A100E5B837 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6C2C2479A100E5B837 /* DateService.swift */; };
@@ -81,9 +78,7 @@
 		3395A8512C36E8540057CA11 /* AttendeesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesRow.swift; sourceTree = "<group>"; };
 		3395A8532C36E8610057CA11 /* AttendeesDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesDetails.swift; sourceTree = "<group>"; };
 		3395A8582C36EEF10057CA11 /* AttendeesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesService.swift; sourceTree = "<group>"; };
-		3395A85A2C38B1AF0057CA11 /* TableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableList.swift; sourceTree = "<group>"; };
 		3395A85C2C38B59A0057CA11 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
-		3395A85E2C393AE70057CA11 /* TableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRow.swift; sourceTree = "<group>"; };
 		3395A8602C41DAF80057CA11 /* ColorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorService.swift; sourceTree = "<group>"; };
 		33A217E12C42D2A800C10E25 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		33A217E32C49CE7400C10E25 /* HeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
@@ -99,7 +94,6 @@
 		33B2BE4E2C1DCDAD00E5B837 /* Gengoffee_MobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gengoffee_MobileUITests.swift; sourceTree = "<group>"; };
 		33B2BE502C1DCDAD00E5B837 /* Gengoffee_MobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gengoffee_MobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		33B2BE5E2C1DD03D00E5B837 /* FooterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterComponent.swift; sourceTree = "<group>"; };
-		33B2BE622C1DD0B500E5B837 /* FooterDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterDesign.swift; sourceTree = "<group>"; };
 		33B2BE642C1EFF0C00E5B837 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		33B2BE672C1EFF6F00E5B837 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		33B2BE6C2C2479A100E5B837 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
@@ -113,10 +107,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		331712172DB81A4D00E4187F /* Tables */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tables; sourceTree = "<group>"; };
+		3317121D2DB81A5F00E4187F /* GeneralUI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GeneralUI; sourceTree = "<group>"; };
+		331712202DB81A6500E4187F /* Events */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Events; sourceTree = "<group>"; };
 		3350D5862D5C6D1500FEBDD0 /* WaitingList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WaitingList; sourceTree = "<group>"; };
 		3350D5BA2D6A190E00FEBDD0 /* AddRegister */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AddRegister; sourceTree = "<group>"; };
 		3350D5DE2D6DBDCD00FEBDD0 /* General */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = General; sourceTree = "<group>"; };
-		33B9B7BA2D435FE00039214D /* Features */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Features; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,8 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				33B9B7D62D4F5A820039214D /* TablePlan.swift */,
-				3395A85A2C38B1AF0057CA11 /* TableList.swift */,
-				3395A85E2C393AE70057CA11 /* TableRow.swift */,
 			);
 			path = Tables;
 			sourceTree = "<group>";
@@ -198,7 +192,6 @@
 		33B2BE302C1DCDAA00E5B837 /* Gengoffee Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				33B9B7BA2D435FE00039214D /* Features */,
 				33B2BE782C26ED7300E5B837 /* assets */,
 				33B2BE692C1EFF9800E5B837 /* views */,
 				33B2BE662C1EFF6200E5B837 /* models */,
@@ -251,7 +244,9 @@
 		33B2BE602C1DD08100E5B837 /* design */ = {
 			isa = PBXGroup;
 			children = (
-				33B2BE622C1DD0B500E5B837 /* FooterDesign.swift */,
+				331712202DB81A6500E4187F /* Events */,
+				3317121D2DB81A5F00E4187F /* GeneralUI */,
+				331712172DB81A4D00E4187F /* Tables */,
 			);
 			path = design;
 			sourceTree = "<group>";
@@ -333,10 +328,12 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				331712172DB81A4D00E4187F /* Tables */,
+				3317121D2DB81A5F00E4187F /* GeneralUI */,
+				331712202DB81A6500E4187F /* Events */,
 				3350D5862D5C6D1500FEBDD0 /* WaitingList */,
 				3350D5BA2D6A190E00FEBDD0 /* AddRegister */,
 				3350D5DE2D6DBDCD00FEBDD0 /* General */,
-				33B9B7BA2D435FE00039214D /* Features */,
 			);
 			name = "Gengoffee Mobile";
 			productName = "Gengoffee Mobile";
@@ -455,7 +452,6 @@
 			files = (
 				33B2BE7A2C26ED8100E5B837 /* Variables.swift in Sources */,
 				33B2BE6D2C2479A100E5B837 /* DateService.swift in Sources */,
-				3395A85F2C393AE70057CA11 /* TableRow.swift in Sources */,
 				3395A8432C2C4C460057CA11 /* EventRow.swift in Sources */,
 				33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */,
 				3395A8522C36E8550057CA11 /* AttendeesRow.swift in Sources */,
@@ -470,7 +466,6 @@
 				33B9B7D92D5445F30039214D /* TablesService.swift in Sources */,
 				3395A8612C41DAF80057CA11 /* ColorService.swift in Sources */,
 				33B2BE362C1DCDAA00E5B837 /* Item.swift in Sources */,
-				33B2BE632C1DD0B500E5B837 /* FooterDesign.swift in Sources */,
 				3395A8542C36E8610057CA11 /* AttendeesDetails.swift in Sources */,
 				33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */,
 				3395A8492C2C68930057CA11 /* RegisteredDetail.swift in Sources */,
@@ -479,7 +474,6 @@
 				3395A84B2C2C6BCC0057CA11 /* RegisteredRow.swift in Sources */,
 				33B2BE6F2C247F2900E5B837 /* CreateEventView.swift in Sources */,
 				33B9B7D12D4C80DE0039214D /* Colors.swift in Sources */,
-				3395A85B2C38B1AF0057CA11 /* TableList.swift in Sources */,
 				33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */,
 				3395A84D2C2C6C410057CA11 /* RegisteredList.swift in Sources */,
 				3350D60D2D92F11F00FEBDD0 /* Attendee.swift in Sources */,

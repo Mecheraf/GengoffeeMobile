@@ -34,13 +34,6 @@ struct ContentView: View {
                     default:
                         EventList(session: $session)
                     }
-//                Button{
-//                    do {
-//                        print(session)
-//
-//                    }
-//                } label: {PrintButton(icon: "person.fill.badge.plus", text: "Print")
-//                }
                 Spacer()
                     FooterComponent(selectedTab: $session.selectedTab)
                     .padding([.top], 20)
