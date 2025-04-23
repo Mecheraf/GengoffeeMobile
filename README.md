@@ -8,10 +8,12 @@ Offline version available for tests.
 Xcode
 iPhone iOS 15 or + 
 
-Warning : 
+## Warning : 
 
 The application has not be designed for iPad yet. 
 The UI is only adjusted for iPhone.
+
+## Directory structure :
 
 ```bash 
 Gengoffee Mobile
