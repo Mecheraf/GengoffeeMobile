@@ -46,7 +46,7 @@ struct TablePlanView: View {
                         ToolbarItem(placement: .topBarTrailing) {
                             HStack {
                                 newTableButton(tables: $tables)
-                                NavigationLink(destination:AddLocalRegisterView(session:session, localAttendees: $session.attendees)){
+                                NavigationLink(destination:AddLocalRegisterView(session:$session)){
                                     Text("Add User")
                                 }
                             }

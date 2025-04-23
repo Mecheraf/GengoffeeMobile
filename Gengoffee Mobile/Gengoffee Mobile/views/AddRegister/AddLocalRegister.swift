@@ -12,11 +12,8 @@ import SwiftData
 
 struct AddLocalRegisterView: View {
     @Environment(\.dismiss) private var dismiss
-    @State var session:MainModel
+    @Binding var session:MainModel
     @FocusState private var keyboardFocused: Bool
-
-
-    @Binding var localAttendees:[Attendee]
     @State var newUser:Attendee = Attendee(
         idUser: -1,
         firstname: "",
@@ -56,9 +53,9 @@ struct AddLocalRegisterView: View {
             Button{
                 do {
                     if(newUser.firstname.count > 0){
-                        localAttendees.append(
+                        session.attendees.append(
                             Attendee(
-                                idUser: ((localAttendees.last?.idUser ?? 0) - 1),
+                                idUser: ((session.attendees.last?.idUser ?? 0) - 1),
                                 firstname: newUser.firstname,
                                 lastname: newUser.lastname,
                                 diet: Optional(""),
@@ -69,25 +66,26 @@ struct AddLocalRegisterView: View {
                             )
                         )
                         let encoder = JSONEncoder()
-                        if let encoded = try? encoder.encode(localAttendees) {
+                        if let encoded = try? encoder.encode(session.attendees) {
                             UserDefaults.standard.set(encoded, forKey: "attendees")
                         }
-                        addTemporaryAttendee(message: temporaryAttendees(
-                            type:2,
-                            attendees:[Attendee(
-                                idUser: ((localAttendees.last?.idUser ?? 0) - 1),
-                                firstname: newUser.firstname,
-                                lastname: newUser.lastname,
-                                diet: Optional(""),
-                                paid: 10,
-                                idEvent: newUser.idEvent,
-                                tablenumber: 0,
-                                nationality: newUser.nationality
-                            )]
-                        ), token:session.token, completion: { success in
-                            print(success)
-                        })
-                        print(localAttendees)
+                        if(session.token != "1"){
+                            addTemporaryAttendee(message: temporaryAttendees(
+                                type:2,
+                                attendees:[Attendee(
+                                    idUser: ((session.attendees.last?.idUser ?? 0) - 1),
+                                    firstname: newUser.firstname,
+                                    lastname: newUser.lastname,
+                                    diet: Optional(""),
+                                    paid: 10,
+                                    idEvent: newUser.idEvent,
+                                    tablenumber: 0,
+                                    nationality: newUser.nationality
+                                )]
+                            ), token:session.token, completion: { success in
+                                print(success)
+                            })
+                        }
                         dismiss()
                     }
                     
@@ -108,7 +106,7 @@ struct AddLocalRegisterView: View {
         @State var tmpAttendees:[Attendee] = []
         @State var session: MainModel = MainModel(events: [blankEvent], attendees: getLocalAttendees(), selectedTab: .checkIn, token:"")
         var body: some View {
-            AddLocalRegisterView(session: session, localAttendees:$tmpAttendees)
+            AddLocalRegisterView(session: $session)
         }
     }
     return Preview()

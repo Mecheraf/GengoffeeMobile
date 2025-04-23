@@ -12,7 +12,6 @@ struct LoginView: View {
     @State var username:String = ""
     @State var password:String = ""
     @Binding var session:MainModel
-
     
     var body: some View {
         VStack (alignment: .leading, spacing: 10){
@@ -48,26 +47,23 @@ struct LoginView: View {
 struct LogoutView: View {
     @Binding var token:String
     @State private var showAlert = false
-
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 10){
-            Button("Logout" , action: {
-                Task {
-                    showAlert = true
-                }
-            })
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Are you sure you want to unlog ?"),
-                    primaryButton: .destructive(Text("Log out")) {
-                        do {
-                            token = ""
-                        }
-                    },
-                    secondaryButton: .cancel()
-                )
+        Button("Logout" , action: {
+            Task {
+                showAlert = true
             }
+        })
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Are you sure you want to unlog ?"),
+                primaryButton: .destructive(Text("Log out")) {
+                    do {
+                        token = ""
+                    }
+                },
+                secondaryButton: .cancel()
+            )
         }
     }
 }
