@@ -8,9 +8,6 @@
 import SwiftUI
 import SwiftData
 
-
-var globalAPI = APIModel()
-
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortArray(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
