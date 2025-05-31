@@ -8,12 +8,22 @@
 import Foundation
 import SwiftUI
 
-func updateTableAttendee(message: [String: [Attendee]], token:String, completion: @escaping (_ success: Bool) -> Void){
+func updateTableAttendee(attendees: [Attendee], token:String, completion: @escaping (_ success: Bool) -> Void){
     
     @StateObject var golbalAPI = APIModel()
     
+    var values:[Attendee] = []
     
-    let url = URL(string: golbalAPI.API_Dev+"updateTableAttendee")!
+    attendees.forEach{ element in
+        if(element.tablenumber != 0 ){
+            values.append(element)
+        }
+    }
+    let message = [
+        "attendees": values
+    ]
+        
+    let url = URL(string: golbalAPI.API_Prod+"updateTableAttendee")!
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
     
@@ -105,7 +115,7 @@ func FilterName(text:String) -> Int{
     return 3 //if it's a name
 }
 
-func SplitName(text:String, typeList:inout String, idEvent:Int) -> [Attendee] {
+func SplitName(text:String, typeList:inout String, idEvent:Int, paid:Int) -> [Attendee] {
     var tmp:[Attendee] = []
     text.components(separatedBy: "\n").forEach{ word in
         switch FilterName(text:word) {
@@ -124,10 +134,11 @@ func SplitName(text:String, typeList:inout String, idEvent:Int) -> [Attendee] {
                     firstname: word,
                     lastname:"",
                     diet:Optional(""),
-                    paid: 10,
+                    paid: paid,
                     idEvent: idEvent,
                     tablenumber: 0,
-                    nationality: typeList
+                    nationality: typeList,
+                    changed:0
                 )
             )
         }
@@ -143,14 +154,18 @@ func concatNamePin(name:String) -> String{
     return array[0]
 }
 
-func sortArray(arr:[Attendee]) -> [Attendee]{
+func sortTypeAttendees(arr:[Attendee]) -> [Attendee]{
+    return arr.sorted {$0.nationality < $1.nationality}
+}
+
+func sortNameAttendees(arr:[Attendee]) -> [Attendee]{
     return arr.sorted {$0.firstname < $1.firstname}
 }
 
 func fusionListAttendees(arr1:[Attendee], arr2:[Attendee]) -> [Attendee]{
     let tmp:[Attendee] = arr1 + arr2
 
-    return sortArray(arr:tmp)
+    return sortTypeAttendees(arr:sortNameAttendees(arr:tmp))
 }
 
 func getLocalAttendees() -> [Attendee]{
@@ -168,7 +183,7 @@ func addTemporaryAttendee(message: temporaryAttendees, token:String, completion:
     
     @StateObject var globalAPI = APIModel()
     
-    let url = URL(string: globalAPI.API_Dev+"temporaryAttendee")!
+    let url = URL(string: globalAPI.API_Prod+"temporaryAttendee")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
 
@@ -204,7 +219,7 @@ func addTemporaryAttendee(message: temporaryAttendees, token:String, completion:
 func getAttendees(token:String, finished: @escaping (_ success: [Attendee])->Void) {
     @StateObject var golbalAPI = APIModel()
     
-    let url = URL(string: golbalAPI.API_Dev+"getAttendees")!
+    let url = URL(string: golbalAPI.API_Prod+"getAttendees")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     
@@ -240,11 +255,39 @@ func getAttendees(token:String, finished: @escaping (_ success: [Attendee])->Voi
     task.resume()
 }
 
-func getTemporaryAttendees() async throws -> [Attendee] {
+func getTemporaryAttendees(finished: @escaping (_ success: [Attendee])->Void) {
+    @StateObject var golbalAPI = APIModel()
     
-    @State var globalAPI = APIModel()
-    let url = URL(string: globalAPI.API_Dev+"getTemporaryAttendee")!
-    let (data, _) = try await URLSession.shared.data(from: url)
-    let wrapper = try JSONDecoder().decode([Attendee].self, from: data)
-    return wrapper
+    let url = URL(string: golbalAPI.API_Prod+"getTemporaryAttendee")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    
+    let data = try! JSONEncoder().encode("")
+    request.httpBody = data
+    request.setValue(
+        "application/json",
+        forHTTPHeaderField: "Content-Type"
+    )
+    var success:[Attendee]! = []
+
+    let task = URLSession.shared.dataTask(with: request)
+    { data, response, error in
+        if
+            error == nil,
+            let statusCode = (response as? HTTPURLResponse)?.statusCode
+        {
+            if statusCode == 200 {
+                let decoder = JSONDecoder()
+                if let attendees:[Attendee] = try? decoder.decode([Attendee].self, from: data!) {
+                    success = attendees
+                }
+                print("SUCCESS")
+            } else {
+                print("FAILURE")
+            }
+        }
+        finished(success)
+    }
+    task.resume()
 }
+

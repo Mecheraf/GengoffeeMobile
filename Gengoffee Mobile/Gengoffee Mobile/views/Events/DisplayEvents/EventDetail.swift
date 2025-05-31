@@ -20,12 +20,14 @@ struct EventDetail: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
-                        updateAttendeesButton(attendees: $session.attendees, token: session.token, idEvent:event.id!)
-                    }.opacity(session.token == "1" ? 0 : 1)
+                        NavigationLink(destination:AddSingleRegisterView(session:$session)){
+                            Text("Add User")
+                        }
+                    }
                 }
             }
-            if session.selectedTab == .checkIn  {
-                RegisteredList(session: session)
+            if session.selectedTab == .checkIn || session.selectedTab == .createEvent  {
+                RegisteredList(idEvent:event.id!, session: session)
             }
             if session.selectedTab == .tables  {
                 TablePlanView(session: $session, tables:[])
@@ -33,9 +35,11 @@ struct EventDetail: View {
         }.task{
             do {
                 if(session.token  != "1"){
-                    getAttendees(token: session.token, finished: { success in
+                    getAttendees(token: session.token, finished: { attendees in
                         Task {
-                            session.attendees = fusionListAttendees(arr1: try await getTemporaryAttendees(), arr2: success)
+                            getTemporaryAttendees(finished: { tempAttendees in
+                                session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: attendees)
+                            })
                             session.events = await assignAttendeesToEvents(limit:5, attendees: session.attendees)
                         }
                     })

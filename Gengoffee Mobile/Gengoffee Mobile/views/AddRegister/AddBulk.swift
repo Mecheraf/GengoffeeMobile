@@ -43,13 +43,13 @@ struct AddBulk: View {
                     if(session.token != "1"){
                         addTemporaryAttendee(message: temporaryAttendees(
                             type:1,
-                            attendees:SplitName(text:text, typeList: &typeList, idEvent:idEvent)
+                            attendees:SplitName(text:text, typeList: &typeList, idEvent:idEvent, paid:0)
                         ), token:session.token, completion: { success in
                             print(success)
                         })
                     }
                     let encoder = JSONEncoder()
-                    if let encoded = try? encoder.encode(SplitName(text:text, typeList: &typeList, idEvent:idEvent)) {
+                    if let encoded = try? encoder.encode(SplitName(text:text, typeList: &typeList, idEvent:idEvent, paid:0)) {
                         UserDefaults.standard.set(encoded, forKey: "attendees")
                     }
                 }

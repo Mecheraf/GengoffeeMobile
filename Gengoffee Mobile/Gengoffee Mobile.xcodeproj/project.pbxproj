@@ -37,7 +37,6 @@
 		33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE642C1EFF0C00E5B837 /* EventService.swift */; };
 		33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE672C1EFF6F00E5B837 /* EventModel.swift */; };
 		33B2BE6D2C2479A100E5B837 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6C2C2479A100E5B837 /* DateService.swift */; };
-		33B2BE6F2C247F2900E5B837 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE6E2C247F2900E5B837 /* CreateEventView.swift */; };
 		33B2BE712C25FCCC00E5B837 /* RegisteredService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE702C25FCCC00E5B837 /* RegisteredService.swift */; };
 		33B2BE752C25FD6800E5B837 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE742C25FD6800E5B837 /* UserModel.swift */; };
 		33B2BE7A2C26ED8100E5B837 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE792C26ED8100E5B837 /* Variables.swift */; };
@@ -97,7 +96,6 @@
 		33B2BE642C1EFF0C00E5B837 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		33B2BE672C1EFF6F00E5B837 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		33B2BE6C2C2479A100E5B837 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
-		33B2BE6E2C247F2900E5B837 /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		33B2BE702C25FCCC00E5B837 /* RegisteredService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredService.swift; sourceTree = "<group>"; };
 		33B2BE742C25FD6800E5B837 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		33B2BE792C26ED8100E5B837 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
@@ -110,9 +108,12 @@
 		331712172DB81A4D00E4187F /* Tables */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tables; sourceTree = "<group>"; };
 		3317121D2DB81A5F00E4187F /* GeneralUI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GeneralUI; sourceTree = "<group>"; };
 		331712202DB81A6500E4187F /* Events */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Events; sourceTree = "<group>"; };
+		3332BFC42DE9AF4900C93479 /* Attendee */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Attendee; sourceTree = "<group>"; };
+		3332BFC82DEB43D200C93479 /* Animation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Animation; sourceTree = "<group>"; };
 		3350D5862D5C6D1500FEBDD0 /* WaitingList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WaitingList; sourceTree = "<group>"; };
 		3350D5BA2D6A190E00FEBDD0 /* AddRegister */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AddRegister; sourceTree = "<group>"; };
 		3350D5DE2D6DBDCD00FEBDD0 /* General */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = General; sourceTree = "<group>"; };
+		33A7F5AA2DCFB4CA00A61DED /* ManageEvents */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ManageEvents; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,15 +141,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3395A8412C2C4C340057CA11 /* Event */ = {
+		3395A8412C2C4C340057CA11 /* DisplayEvents */ = {
 			isa = PBXGroup;
 			children = (
 				3395A8422C2C4C460057CA11 /* EventRow.swift */,
 				3395A8442C2C511B0057CA11 /* EventList.swift */,
 				3395A8462C2C54A10057CA11 /* EventDetail.swift */,
-				33B2BE6E2C247F2900E5B837 /* CreateEventView.swift */,
 			);
-			path = Event;
+			path = DisplayEvents;
 			sourceTree = "<group>";
 		};
 		3395A84E2C36E81C0057CA11 /* Attendees */ = {
@@ -167,6 +167,15 @@
 				33B9B7D62D4F5A820039214D /* TablePlan.swift */,
 			);
 			path = Tables;
+			sourceTree = "<group>";
+		};
+		33A7F5A92DCFB49300A61DED /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				33A7F5AA2DCFB4CA00A61DED /* ManageEvents */,
+				3395A8412C2C4C340057CA11 /* DisplayEvents */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		33B2BE252C1DCDAA00E5B837 = {
@@ -244,6 +253,8 @@
 		33B2BE602C1DD08100E5B837 /* design */ = {
 			isa = PBXGroup;
 			children = (
+				3332BFC82DEB43D200C93479 /* Animation */,
+				3332BFC42DE9AF4900C93479 /* Attendee */,
 				331712202DB81A6500E4187F /* Events */,
 				3317121D2DB81A5F00E4187F /* GeneralUI */,
 				331712172DB81A4D00E4187F /* Tables */,
@@ -281,12 +292,12 @@
 		33B2BE692C1EFF9800E5B837 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				33A7F5A92DCFB49300A61DED /* Events */,
 				3350D5DE2D6DBDCD00FEBDD0 /* General */,
 				3350D5BA2D6A190E00FEBDD0 /* AddRegister */,
 				3350D5862D5C6D1500FEBDD0 /* WaitingList */,
 				3395A8552C36E9000057CA11 /* Tables */,
 				3395A84E2C36E81C0057CA11 /* Attendees */,
-				3395A8412C2C4C340057CA11 /* Event */,
 				33B2BE7B2C273CCF00E5B837 /* register */,
 			);
 			path = views;
@@ -331,9 +342,12 @@
 				331712172DB81A4D00E4187F /* Tables */,
 				3317121D2DB81A5F00E4187F /* GeneralUI */,
 				331712202DB81A6500E4187F /* Events */,
+				3332BFC42DE9AF4900C93479 /* Attendee */,
+				3332BFC82DEB43D200C93479 /* Animation */,
 				3350D5862D5C6D1500FEBDD0 /* WaitingList */,
 				3350D5BA2D6A190E00FEBDD0 /* AddRegister */,
 				3350D5DE2D6DBDCD00FEBDD0 /* General */,
+				33A7F5AA2DCFB4CA00A61DED /* ManageEvents */,
 			);
 			name = "Gengoffee Mobile";
 			productName = "Gengoffee Mobile";
@@ -472,7 +486,6 @@
 				33B9B7D72D4F5A820039214D /* TablePlan.swift in Sources */,
 				3395A8502C36E8460057CA11 /* AttendeesList.swift in Sources */,
 				3395A84B2C2C6BCC0057CA11 /* RegisteredRow.swift in Sources */,
-				33B2BE6F2C247F2900E5B837 /* CreateEventView.swift in Sources */,
 				33B9B7D12D4C80DE0039214D /* Colors.swift in Sources */,
 				33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */,
 				3395A84D2C2C6C410057CA11 /* RegisteredList.swift in Sources */,

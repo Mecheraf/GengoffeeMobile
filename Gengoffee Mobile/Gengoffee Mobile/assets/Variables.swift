@@ -18,6 +18,11 @@ class UIScreenSize: ObservableObject {
     @Published var height = UIScreen.main.bounds.height - 32.0
 }
 
+enum UIUserInterfaceIdiom : Int {
+    case unspecified
+    case phone // iPhone and iPod touch style UI
+    case pad   // iPad style UI (also includes macOS Catalyst)
+}
 
 extension UIDevice {
     static var isIPad: Bool {
@@ -85,8 +90,9 @@ var alan = Attendee(
     diet: Optional(""),
     paid: 10,
     idEvent: 156,
-    tablenumber: 0,
-    nationality: "fr"
+    tablenumber: 1,
+    nationality: "fr",
+    changed:1
 )
 
 var mayu = Attendee(
@@ -96,8 +102,9 @@ var mayu = Attendee(
     diet: Optional(""),
     paid: 10,
     idEvent: 156,
-    tablenumber: 0,
-    nationality: "jp"
+    tablenumber: 1,
+    nationality: "jp",
+    changed:1
 
 )
 
@@ -108,8 +115,9 @@ var salim = Attendee(
     diet: Optional(""),
     paid: 10,
     idEvent: 156,
-    tablenumber: 0,
-    nationality: "fr"
+    tablenumber: 1,
+    nationality: "fr",
+    changed:0
 )
 
 var vincent = Attendee(
@@ -119,8 +127,9 @@ var vincent = Attendee(
     diet: Optional(""),
     paid: 10,
     idEvent: 156,
-    tablenumber: 0,
-    nationality: "fr"
+    tablenumber: 2,
+    nationality: "fr",
+    changed:1
 )
 
 var daigo = Attendee(
@@ -130,8 +139,9 @@ var daigo = Attendee(
     diet: Optional(""),
     paid: 0,
     idEvent: 156,
-    tablenumber: 0,
-    nationality: "ハーフ"
+    tablenumber: 2,
+    nationality: "ハーフ",
+    changed:0
 )
 
 var shiori = Attendee(
@@ -141,8 +151,9 @@ var shiori = Attendee(
     diet: Optional(""),
     paid: 10,
     idEvent: 156,
-    tablenumber: 0,
-    nationality: "jp"
+    tablenumber: 2,
+    nationality: "jp",
+    changed:1
 )
 
 var adrien = Attendee(
@@ -152,8 +163,9 @@ var adrien = Attendee(
     diet: Optional(""),
     paid: 10,
     idEvent: 156,
-    tablenumber: 0,
-    nationality: "fr"
+    tablenumber: 3,
+    nationality: "fr",
+    changed:1
 )
 
 var steve = Attendee(
@@ -164,7 +176,8 @@ var steve = Attendee(
     paid: 0,
     idEvent: 156,
     tablenumber: 0,
-    nationality: ""
+    nationality: "",
+    changed:0
 )
 
 var alan2 = Attendee(
@@ -175,7 +188,8 @@ var alan2 = Attendee(
     paid: 10,
     idEvent: 156,
     tablenumber: 0,
-    nationality: "fr"
+    nationality: "fr",
+    changed:0
 )
 
 var mayu2 = Attendee(
@@ -186,7 +200,8 @@ var mayu2 = Attendee(
     paid: 0,
     idEvent: 156,
     tablenumber: 0,
-    nationality: "jp"
+    nationality: "jp",
+    changed:0
 
 )
 
@@ -198,7 +213,8 @@ var salim2 = Attendee(
     paid: 10,
     idEvent: 156,
     tablenumber: 0,
-    nationality: "fr"
+    nationality: "fr",
+    changed:0
 )
 
 var vincent2 = Attendee(
@@ -209,7 +225,8 @@ var vincent2 = Attendee(
     paid: 10,
     idEvent: 156,
     tablenumber: 0,
-    nationality: "fr"
+    nationality: "fr",
+    changed:0
 )
 
 var daigo2 = Attendee(
@@ -220,7 +237,8 @@ var daigo2 = Attendee(
     paid: 10,
     idEvent: 156,
     tablenumber: 0,
-    nationality: "ハーフ"
+    nationality: "ハーフ",
+    changed:0
 )
 
 var shiori2 = Attendee(
@@ -231,7 +249,8 @@ var shiori2 = Attendee(
     paid: 0,
     idEvent: 156,
     tablenumber: 0,
-    nationality: "jp"
+    nationality: "jp",
+    changed:0
 )
 
 var adrien2 = Attendee(
@@ -242,13 +261,17 @@ var adrien2 = Attendee(
     paid: 0,
     idEvent: 156,
     tablenumber: 0,
-    nationality: "fr"
+    nationality: "fr",
+    changed:0
 )
 
 var setAttendees:[Attendee] = [alan, mayu, salim, vincent, daigo, shiori, adrien, steve, alan2, mayu2, salim2, vincent2, daigo2, shiori2, adrien2]
 var setAttendeesShort:[Attendee] = [alan, mayu, salim, vincent, daigo, shiori, adrien]
 
-let tableGridLayout = Array(repeating: GridItem(.flexible(), spacing: 0), count: 2)
-let waitingGridLayout = Array(repeating: GridItem(.flexible(), spacing: 0), count: 4)
+let tableGridLayout = (UIDevice.current.userInterfaceIdiom == .phone ?
+                       Array(repeating: GridItem(.flexible(), spacing: 0), count: 2) : Array(repeating: GridItem(.flexible(), spacing: 0), count: 3)
+)
+let waitingGridLayout = (UIDevice.current.userInterfaceIdiom == .phone ?
+                         Array(repeating: GridItem(.flexible(), spacing: 0), count: 4) : Array(repeating: GridItem(.flexible(), spacing: 0), count: 6))
 
 

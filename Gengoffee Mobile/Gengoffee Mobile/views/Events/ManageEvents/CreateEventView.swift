@@ -19,7 +19,7 @@ struct CreateEventView: View {
 
 
 
-    let types = ["fr", "en", "jp"]
+    let types = ["fr", "en", "jp", "karaoke"]
     let locations = ["PARIS", "TOKYO"]
     
     @State var message = Event(
@@ -79,7 +79,6 @@ struct CreateEventView: View {
                 }label: {
                     VStack(spacing: 6) {
                         Image(systemName: "icloud.and.arrow.up.fill")
-                        
                         if(self.place.isEmpty){
                             Text("Fill the form")
                                 .foregroundColor(.gengoffeeRed)

@@ -25,7 +25,7 @@ struct AddRegisterView: View {
                             ForEach(session.events, id: \.id) { event in
                                 Text(event.place + " " + dateToSQLDate(event.date))
                                     .tag(event.id!)
-                                    .foregroundStyle(selectColor(nat:event.type))
+                                    .foregroundStyle(selectColorEvent(type:event.type))
                             }
                         }
                         .pickerStyle(.inline)

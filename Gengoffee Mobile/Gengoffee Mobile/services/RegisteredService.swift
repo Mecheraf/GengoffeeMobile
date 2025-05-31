@@ -33,7 +33,7 @@ func addUser(message: Event, completion: @escaping (_ success: Bool) -> Void){
     
     @StateObject var globalAPI = APIModel()
     
-    let url = URL(string: globalAPI.API_Dev+"insertuser")!
+    let url = URL(string: globalAPI.API_Prod+"insertuser")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     
@@ -69,7 +69,7 @@ func newUserToEvent(message: newUser, completion: @escaping (_ success: Bool) ->
     
     @StateObject var globalAPI = APIModel()
     
-    let url = URL(string: globalAPI.API_Dev+"newUserToEvent")!
+    let url = URL(string: globalAPI.API_Prod+"newUserToEvent")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     
@@ -109,7 +109,7 @@ func updateAttendee(message: [Attendee], token:String, completion: @escaping (_ 
         "attendees":convertUpdatedAttendee(attendees: message)
     ]
     
-    let url = URL(string: globalAPI.API_Dev+"updateAttendee")!
+    let url = URL(string: globalAPI.API_Prod+"updateAttendee")!
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
     
@@ -144,4 +144,14 @@ func updateAttendee(message: [Attendee], token:String, completion: @escaping (_ 
         completion(success)
     }
     task.resume()
+}
+
+func countPaidUsers(attendees:[Attendee]) -> Int {
+    var res = 0
+    attendees.forEach{ element in
+        if(element.paid > 0){
+            res+=1
+        }
+    }
+    return res
 }

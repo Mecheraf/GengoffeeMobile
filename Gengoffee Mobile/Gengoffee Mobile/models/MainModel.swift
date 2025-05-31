@@ -16,7 +16,7 @@ struct MainModel: Codable {
     init(events:[Event], attendees:[Attendee], selectedTab:FooterSelection, token:String){
         self.events = events
         self.attendees = attendees
-        self.selectedTab = .checkIn
+        self.selectedTab = selectedTab
         self.token = token
     }
 }

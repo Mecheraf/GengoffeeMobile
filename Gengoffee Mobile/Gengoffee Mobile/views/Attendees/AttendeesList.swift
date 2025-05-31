@@ -28,10 +28,7 @@ struct AttendeesList: View {
         VStack {
             Button{
                 do {
-                    let message = [
-                        "attendees": attendees
-                    ]
-                    updateTableAttendee(message: message, token:session.token, completion: { success in
+                    updateTableAttendee(attendees: attendees, token:session.token, completion: { success in
                         print(success)
                     })
                 }

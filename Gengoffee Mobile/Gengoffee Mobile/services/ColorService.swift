@@ -23,3 +23,14 @@ func selectColor(nat:String) -> Color{
         return .white
     }
 }
+
+func selectColorEvent(type:String) -> Color{
+    switch type {
+    case "jp", "karaoke":
+        return Color.gengoffeeRed
+    case "en", "fr":
+        return Color.gengoffeeBlue
+    default :
+        return .white
+    }
+}

@@ -22,6 +22,7 @@ extension Color {
     public static var gengoffeeGreen: Color {
         return Color(UIColor(red: 0/255, green: 128/255, blue: 95/255, alpha: 1.0))
     }
+    
     public static var Text: Color {
         @Environment(\.colorScheme) var colorScheme
         return (colorScheme == .dark ? Color(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)) : Color(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)) )

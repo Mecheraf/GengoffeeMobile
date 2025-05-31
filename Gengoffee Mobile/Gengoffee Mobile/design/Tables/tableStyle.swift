@@ -9,11 +9,10 @@ import SwiftUI
 import Foundation
 
 struct TableStyle: View {
-    @State var rectangleIsTargeted:Bool = false
     @Binding var attendees:[Attendee]
     @State var number:Int = 0
     @Binding var selectedUser:Int
-    
+    let maxWidth:CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 230 : 150
 
     var body: some View {
         ZStack(){
@@ -24,30 +23,18 @@ struct TableStyle: View {
                             AttendeePin(attendee:$attendees[index], selectedUser: $selectedUser)
                             .contextMenu(menuItems:
                             {
-                                NavigationLink(destination: RegisteredDetail(attendee: $attendees[index], attendees: $attendees)) {
-                                    Text("Edit user")
-                                    Image(systemName: "heart")
-                                }
-                                Button(action: {
-                                    deleteDefaultsAttendee(id: attendee.idUser)
-                                    attendees.remove(at: findIdUser(attendees: attendees, idUser: attendee.idUser))
-                                })
-                                {
-                                    Text("Delete user")
-                                    Image(systemName: "person.slash.fill")
-                                }
+                                editAttendee(attendee: $attendees[index], attendees: $attendees)
+                                deleteAttendeeButton(attendee: attendee, attendees: $attendees)
                             })
                         }
                     }
-                }.frame(width: 150)
+                }.frame(minWidth: 150, maxWidth: maxWidth)
                     .padding(.vertical)
             }
             .background{
                 Color.white
                     .overlay(
                         Rectangle()
-                        // we are lightening the rectange if someone is hovering over it with the expected payload
-                        // to help users know that this is a target they can drop something onto
                             .foregroundStyle(
                                 .secondary.opacity(0.1)
                             )
@@ -55,28 +42,34 @@ struct TableStyle: View {
                             .cornerRadius(4)
                             .onTapGesture {
                                 if(selectedUser != 0){
+                                    if(attendees[findIdUser(attendees: attendees, idUser: selectedUser)].tablenumber != 0) {
+                                        attendees[findIdUser(attendees: attendees, idUser: selectedUser)].changed = 1
+                                    }
                                     attendees[findIdUser(attendees: attendees, idUser: selectedUser)].tablenumber = number
                                     selectedUser = 0
                                     let encoder = JSONEncoder()
                                     if let encoded = try? encoder.encode(attendees) {
                                         UserDefaults.standard.set(encoded, forKey: "attendees")
-
                                     }
                                 }
                             }
                     )
+                TablePin(number: number)
+                    .position(x:12, y:12)
+                ratioPin(attendees: $attendees, tableNumber: number)
+                    .position(x:maxWidth - 15, y:12)
             }
-            TablePin(number: number)
+            
         }
     }
 }
 
-//#Preview {
-//    struct Preview: View {
-//        @State var attendees:[Attendee] = setAttendees
-//        var body: some View {
-//            TablePlanView(attendees:$attendees, tables:[])
-//        }
-//    }
-//    return Preview()
-//}
+#Preview {
+    struct Preview: View {
+        @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
+        var body: some View {
+            TablePlanView(session: $session)
+        }
+    }
+    return Preview()
+}

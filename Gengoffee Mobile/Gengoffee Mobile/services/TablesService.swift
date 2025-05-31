@@ -52,5 +52,14 @@ func checkTables(attendees:[Attendee]) -> [TableModel]{
         }
     }
     return res
-    
+}
+
+func countTableUsers(attendees:[Attendee], type:[String], tableNumber:Int) -> Int {
+    var res = 0
+    attendees.forEach{ element in
+        if(element.tablenumber == tableNumber && type.contains(element.nationality)){
+            res+=1
+        }
+    }
+    return res
 }

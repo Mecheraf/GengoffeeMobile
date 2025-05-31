@@ -36,7 +36,7 @@ struct EventRow: View {
             Text(event.location)
             Text(dateToSQLDate(event.date))
         }
-        .foregroundColor(selectColor(nat: event.type))
+        .foregroundColor(selectColorEvent(type: event.type))
     }
 }
 

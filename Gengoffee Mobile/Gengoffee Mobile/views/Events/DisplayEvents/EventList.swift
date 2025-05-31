@@ -32,25 +32,35 @@ struct EventList: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    CreateEventView(session: session)
+                } label : {
+                    Text("Create event")
+                        .frame(height: 20)
+                }.opacity(session.selectedTab == .createEvent ? 1 : 0)
+            }
+        }
     }
 }
 
 
-//#Preview {
-//    struct Preview: View {
-//        @State var session: MainModel = MainModel(events: [], attendees: [], selectedTab: .checkIn, token:"")
-//        var body: some View {
-//            EventList(session: $session)
-//        }
-//    }
-//    return Preview()
-//}
-
 #Preview {
     struct Preview: View {
+        @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .createEvent, token:"")
         var body: some View {
-            ContentView()
+            EventList(session: $session)
         }
     }
     return Preview()
 }
+
+//#Preview {
+//    struct Preview: View {
+//        var body: some View {
+//            ContentView()
+//        }
+//    }
+//    return Preview()
+//}

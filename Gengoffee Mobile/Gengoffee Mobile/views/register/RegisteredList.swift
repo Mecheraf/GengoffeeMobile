@@ -9,38 +9,51 @@ import Foundation
 import SwiftUI
 
 struct RegisteredList: View {
+    @State var idEvent:Int = 0
     @State var session:MainModel
     @State private var updatedAttendees:[Attendee] = []
-    
+
     var body: some View {
-        NavigationView{
+        NavigationStack{
+            let registerState:[Int] = session.selectedTab == .createEvent ? [-1, 0] : [0, 10, 11]
             Section{
                 List{
-                    Section("Hello"){
+                    Section("On list"){
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
-                            if (attendee.paid == 0) {
+                            if (attendee.paid == registerState[0] && (attendee.idEvent == idEvent || attendee.idEvent == 0)) {
                                 NavigationLink {
-                                    RegisteredDetail(attendee:$session.attendees[index], attendees: $session.attendees)
+                                    RegisteredDetail(attendee:$session.attendees[index], attendees:$session.attendees, nat:session.attendees[index].nationality)
                                 }
                                 label: {
-                                    RegisteredRow(newAttendee: $session.attendees[index], updatedAttendees: $updatedAttendees)
+                                    RegisteredRow(newAttendee: $session.attendees[index],  updatedAttendees: $updatedAttendees, paid:session.attendees[index].paid, registerState:registerState)
                                 }
                             }
                         }
                     }
-                    Section("Paid"){
+                    Section(session.selectedTab == .createEvent ?  "Approved" : "Paid : \(countPaidUsers(attendees: session.attendees))"){
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
-                            if (attendee.paid > 0) {
+                            if (registerState.contains(attendee.paid) && attendee.paid > registerState[0] && (attendee.idEvent == idEvent || attendee.idEvent == 0)) {
                                 NavigationLink {
-                                    RegisteredDetail(attendee:$session.attendees[index], attendees: $session.attendees)
+                                    RegisteredDetail(attendee:$session.attendees[index], attendees:$session.attendees, nat:session.attendees[index].nationality)
                                 }
                                 label: {
-                                    RegisteredRow(newAttendee: $session.attendees[index], updatedAttendees: $updatedAttendees)
+                                    RegisteredRow(newAttendee: $session.attendees[index], updatedAttendees: $updatedAttendees, paid:session.attendees[index].paid,
+                                        registerState:registerState)
                                 }
                             }
                         }
                     }
                 }
+            }
+        }.refreshable {
+            Task { //Need to update the attendees table before
+                getAttendees(token: session.token, finished: { attendees in
+                    Task {
+                        getTemporaryAttendees(finished: { tempAttendees in
+                            session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: attendees)
+                        })
+                    }
+                })
             }
         }
         VStack {
@@ -56,13 +69,13 @@ struct RegisteredList: View {
                     Text("Update check in")
                 }.frame(maxWidth: .infinity)
             }
-        }.onAppear()
+        }
     }
 }
 
 #Preview {
     struct Preview: View {
-        @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortArray(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
+        @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
         var body: some View {
             RegisteredList(session: session)
         }

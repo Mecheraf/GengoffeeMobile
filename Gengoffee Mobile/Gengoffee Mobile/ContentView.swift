@@ -10,26 +10,22 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortArray(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
+    @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
     let defaults = UserDefaults.standard
-    
+     
     var body: some View {
-        NavigationView {
-            if(session.token.count == 0){
+        NavigationStack {
+            if(session.token == ""){
                 LoginView(session: $session)
             } else {
                 VStack {
                     switch session.selectedTab {
-                    case .checkIn, .tables:
+                    case .checkIn, .tables, .createEvent:
                         EventList(session: $session)
                     case .plus:
                         AddRegisterView(session: session)
-                    case .createEvent:
-                        CreateEventView(session: session)
                     case .settings:
                         Settings(session: $session)
-                    default:
-                        EventList(session: $session)
                     }
                 Spacer()
                     FooterComponent(selectedTab: $session.selectedTab)
@@ -40,8 +36,12 @@ struct ContentView: View {
                         if(session.token  != "1"){
                             getAttendees(token: session.token, finished: { success in
                                 Task {
-                                    session.attendees = sortArray(arr:fusionListAttendees(arr1: try await getTemporaryAttendees(), arr2: success))
-                                    session.events = await assignAttendeesToEvents(limit:5, attendees: session.attendees)
+                                    getTemporaryAttendees(finished: { tempAttendees in
+                                        session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: success)
+                                        Task {
+                                            session.events = await assignAttendeesToEvents(limit:5, attendees: session.attendees)
+                                        }
+                                    })
                                 }
                             })
                         }
@@ -51,7 +51,6 @@ struct ContentView: View {
             
         }
         .ignoresSafeArea(.keyboard)
-        
     }
 }
 

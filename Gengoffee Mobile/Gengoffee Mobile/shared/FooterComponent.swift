@@ -13,8 +13,7 @@ enum FooterSelection:Int, Codable {
     case tables = 2
     case plus = 3
     case createEvent = 4
-    case tablePlan = 5
-    case settings = 6
+    case settings = 5
 }
 
 struct FooterComponent:View {
@@ -27,14 +26,11 @@ struct FooterComponent:View {
 
     
     var body : some View {
-        
         HStack(spacing:10){
             Button {
                 selectedTab = .checkIn
             } label: {
-                ZStack {
-                    FooterButtonView(image: "checklist", text: "Check In", isActive: selectedTab == .checkIn)
-                }
+                FooterButtonView(image: "checklist", text: "Check In", isActive: selectedTab == .checkIn)
             }
             Button {
                 selectedTab = .tables
@@ -64,7 +60,7 @@ struct FooterComponent:View {
                 selectedTab = .createEvent
 
             } label: {
-                FooterButtonView(image: "plus.app", text: "New Event", isActive: selectedTab == .createEvent)
+                FooterButtonView(image: "plus.app", text: "Events", isActive: selectedTab == .createEvent)
             }
             Button {
                 selectedTab = .settings
@@ -75,19 +71,18 @@ struct FooterComponent:View {
 
         }
         .ignoresSafeArea(.keyboard)
-        .frame(height: 40)
+        .frame(height: UIDevice.isIPad ? 60 : 40)
     }// Body
 } //View
 
-//#Preview {
-//    struct Preview: View {
-//        @State var tmpAttendees:[Attendee] = []
-//        var body: some View {
-//            AddLocalRegisterView(localAttendees:$tmpAttendees)
-//        }
-//    }
-//    return Preview()
-//}
+#Preview {
+    struct Preview: View {
+        var body: some View {
+            ContentView()
+        }
+    }
+    return Preview()
+}
 
 struct FooterButtonView: View {
     

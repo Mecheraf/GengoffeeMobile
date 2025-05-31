@@ -11,7 +11,7 @@ import SwiftUI
 func getUsers() async throws -> [User] { 
     
     @StateObject var golbalAPI = APIModel()
-    let url = URL(string: golbalAPI.API_Dev+"getUsers")!
+    let url = URL(string: golbalAPI.API_Prod+"getUsers")!
     let (data, _) = try await URLSession.shared.data(from: url)
     let wrapper = try JSONDecoder().decode([User].self, from: data)
     return wrapper
@@ -21,7 +21,7 @@ func getLanguages(id:[Int]) async throws -> [Attendee] {
     
     @StateObject var globalAPI = APIModel()
     
-    let url = URL(string: globalAPI.API_Dev+"getLanguages")!
+    let url = URL(string: globalAPI.API_Prod+"getLanguages")!
     let (data, _) = try await URLSession.shared.data(from: url)
     let wrapper = try JSONDecoder().decode([Attendee].self, from: data)
     return wrapper
@@ -31,7 +31,7 @@ func updateUser(message: [Attendee], completion: @escaping (_ success: Bool) -> 
     
     @StateObject var globalAPI = APIModel()
     
-    let url = URL(string: globalAPI.API_Dev+"updateUser")!
+    let url = URL(string: globalAPI.API_Prod+"updateUser")!
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
     

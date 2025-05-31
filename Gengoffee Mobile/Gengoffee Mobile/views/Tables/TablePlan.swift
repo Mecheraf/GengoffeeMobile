@@ -16,24 +16,24 @@ struct TablePlanView: View {
     @State var tables:[TableModel] = []
     
     var body: some View {
-        NavigationSplitView{
+        NavigationStack{
             VStack {
                 HStack{
                     WaitingList(attendees:$session.attendees, selectedUser: $selectedUser)
                 }
                 Divider()
-                NavigationView{
+                NavigationStack{
+                    tableButtons(tables: $tables, session: $session)
                     ScrollView(.vertical){
                         LazyVGrid(columns: tableGridLayout){
                             ForEach(tables, id:\.self.number){ table in
                                 TableStyle(attendees: $session.attendees, number:table.number, selectedUser: $selectedUser)
                                     .contextMenu(menuItems:
-                                    {
+                                                    {
                                         Button{
                                             do {
                                                 if(checkTableUser(attendees: session.attendees, number: table.number)){
                                                     tables.remove(at:table.number - 1)
-
                                                 }
                                             }
                                         } label: { designButton(icon: "minus.square", text: "Delete table")
@@ -41,30 +41,43 @@ struct TablePlanView: View {
                                     })
                             }
                         }
-                    }
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            HStack {
-                                newTableButton(tables: $tables)
-                                NavigationLink(destination:AddLocalRegisterView(session:$session)){
-                                    Text("Add User")
-                                }
+                    }.refreshable {
+                        if(session.token != "1") {
+                            Task { //Need to update the attendees table before
+                                getAttendees(token: session.token, finished: { attendees in
+                                    Task {
+                                        getTemporaryAttendees(finished: { tempAttendees in
+                                            session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: attendees)
+                                            tables = checkTables(attendees: session.attendees)
+
+                                        })
+                                    }
+                                })
                             }
+                        } else {
+                            print("Not connected")
                         }
+                        
                     }
+                    
                 }
             }
-            .task {
-                do {
-                    tables = checkTables(attendees: session.attendees)
-                }
-            
+        }
+        .task {
+            do {
+                tables = checkTables(attendees: session.attendees)
             }
         }
-        detail: {
-            Text("Plan de table")
-        }
-        
     }
+}
+
+#Preview {
+    struct Preview: View {
+        @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
+        var body: some View {
+            TablePlanView(session: $session)
+        }
+    }
+    return Preview()
 }
 

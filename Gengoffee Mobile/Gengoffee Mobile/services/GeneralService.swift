@@ -42,7 +42,7 @@ func deleteDefaultsAttendee(id:Int) {
 func loginFunc(username:String, password:String, finished: @escaping (_ success: String)->Void) {
     @StateObject var golbalAPI = APIModel()
     
-    let url = URL(string: golbalAPI.API_Dev+"loginAdmin")!
+    let url = URL(string: golbalAPI.API_Prod+"loginAdmin")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     

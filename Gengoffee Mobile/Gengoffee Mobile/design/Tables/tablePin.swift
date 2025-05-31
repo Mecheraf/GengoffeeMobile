@@ -9,16 +9,34 @@ import SwiftUI
 
 struct TablePin:View {
     @State var number:Int
-    
+    @State var colorText = Color.Text
+    @State var fontSize:CGFloat = 20
     var body: some View {
-        HStack{
-            Text(String(number))
-                .font(.system(size:22))
-                .padding()
-                .foregroundColor(Color.black)
+        Text(String(number))
+            .font(.system(size:fontSize))
+            .foregroundColor(colorText)
+            
+    }
+}
 
+struct ratioPin:View {
+    @Binding var attendees:[Attendee]
+    @State var colorText = Color.Text
+    @State var fontSize:CGFloat = 14
+    @State var tableNumber:Int = 0
+
+    var body: some View {
+        HStack(spacing: 1){
+            Text(String(countTableUsers(attendees: attendees, type: ["fr"], tableNumber: tableNumber)))
+                .font(.system(size:fontSize))
+                .foregroundColor(Color.gengoffeeBlue)
+            Text("/")
+            Text(String(countTableUsers(attendees: attendees, type: ["jp", "ハーフ", "en"], tableNumber: tableNumber)))
+                .font(.system(size:fontSize))
+                .foregroundColor(Color.gengoffeeRed)
         }
     }
+    
 }
 
 #Preview {
@@ -27,7 +45,7 @@ struct TablePin:View {
         @State var selectedUser:Int = 0
 
         var body: some View {
-            TableStyle(rectangleIsTargeted:false, attendees: $attendees, number:0, selectedUser: $selectedUser)
+            TableStyle(attendees: $attendees, number:1, selectedUser: $selectedUser)
         }
     }
     return Preview()

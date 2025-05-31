@@ -24,22 +24,36 @@ struct LoginView: View {
                     hideKeyboard()
                 }.underlineTextField()
             HStack(spacing: 100){
-                Button("Log in" , action: {
-                    Task {
-                        if(username.count > 0 && password.count > 0){
-                            loginFunc(username: username, password: password, finished:
-                                        { success in
-                                session.token = success
-                            })
-                        }
-                    }
-                })
+                LoginButton(session: $session, username: $username, password: $password)
                 Button("Offline mode" , action: {
                     do {
                         session = MainModel(events: [blankEvent], attendees: getLocalAttendees(), selectedTab: .checkIn, token:"1")
                     }
                 })
             }
+        }
+    }
+}
+
+struct LoginButton: View {
+    @Binding var session:MainModel
+    @Binding var username:String
+    @Binding var password:String
+    @State var loading:Bool = false
+    var body: some View {
+        ZStack{
+            Button("Log in" , action: {
+                Task {
+                    if(username.count > 0 && password.count > 0){
+                        loginFunc(username: username, password: password, finished:
+                                    { success in
+                            session.token = success
+                            loading = false
+                        })
+                    }
+                }
+            }).opacity(loading ? 0 : 1)
+            SpinnerView().opacity(loading ? 1 : 0)
         }
     }
 }
@@ -72,7 +86,7 @@ struct LogoutView: View {
     struct Preview: View {
         @State var session: MainModel = MainModel(events: [], attendees: [], selectedTab: .checkIn, token:"")
         var body: some View {
-            Settings(session: $session)
+            LoginView(session: $session)
         }
     }
     return Preview()
