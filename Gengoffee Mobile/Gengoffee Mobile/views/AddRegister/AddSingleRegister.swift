@@ -67,6 +67,7 @@ struct AddRegisterButtons: View {
                     newUser.paid = (session.selectedTab == .tables ? 10 : 0);
                     if(newUser.firstname.count > 0){
                         addLocalRegister(session: &session, newUser: newUser)
+                        newUser.firstname = ""
                     }
                 }
             }label: { designButton(icon: "person.badge.plus.fill", text: "Add")

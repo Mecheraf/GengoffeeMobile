@@ -19,7 +19,7 @@ struct TableStyle: View {
             VStack{
                 LazyVGrid(columns: tableGridLayout){
                     ForEach(Array(attendees.enumerated()), id:\.offset){ index,attendee in
-                        if(attendee.tablenumber == number){
+                        if(attendee.tablenumber == number && attendee.paid > 0){
                             AttendeePin(attendee:$attendees[index], selectedUser: $selectedUser)
                             .contextMenu(menuItems:
                             {

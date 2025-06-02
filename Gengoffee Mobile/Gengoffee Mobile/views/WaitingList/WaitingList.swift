@@ -21,7 +21,7 @@ struct WaitingList:View {
                 AttendeesAlignement(attendees:$attendees, selectedUser: $selectedUser)
                     .onTapGesture {
                         if(selectedUser != 0){
-                            attendees[findIdUser(attendees: attendees, idUser: selectedUser)].tablenumber = 0
+                            attendees[findIdUser(attendees: attendees, idUser: selectedUser)].tablenumber = -1
                             selectedUser = 0
                             let encoder = JSONEncoder()
                             if let encoded = try? encoder.encode(attendees) {

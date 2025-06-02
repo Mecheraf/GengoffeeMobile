@@ -17,7 +17,7 @@ struct AttendeesAlignement:View {
             ScrollView {
                 LazyVGrid(columns: waitingGridLayout){
                     ForEach(Array(attendees.enumerated()), id:\.offset){ index, attendee in
-                        if(attendee.tablenumber == 0 && attendee.paid > 0){
+                        if(attendee.tablenumber <= 0 && attendee.paid > 0){
 //                        if(attendee.tablenumber == 0){
                             AttendeePin(attendee:$attendees[index], selectedUser: $selectedUser)
                                 .contextMenu(menuItems: {
