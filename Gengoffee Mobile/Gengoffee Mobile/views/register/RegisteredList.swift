@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RegisteredList: View {
     @State var idEvent:Int = 0
-    @State var session:MainModel
+    @Binding var session:MainModel
     @State private var updatedAttendees:[Attendee] = []
 
     var body: some View {
@@ -22,7 +22,7 @@ struct RegisteredList: View {
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
                             if (attendee.paid == registerState[0] && (attendee.idEvent == idEvent || attendee.idEvent == 0)) {
                                 NavigationLink {
-                                    RegisteredDetail(attendee:$session.attendees[index], attendees:$session.attendees, nat:session.attendees[index].nationality)
+                                    RegisteredDetail(attendee:$session.attendees[index], session:$session, nat:session.attendees[index].nationality)
                                 }
                                 label: {
                                     RegisteredRow(newAttendee: $session.attendees[index],  updatedAttendees: $updatedAttendees, paid:session.attendees[index].paid, registerState:registerState)
@@ -34,7 +34,7 @@ struct RegisteredList: View {
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
                             if (registerState.contains(attendee.paid) && attendee.paid > registerState[0] && (attendee.idEvent == idEvent || attendee.idEvent == 0)) {
                                 NavigationLink {
-                                    RegisteredDetail(attendee:$session.attendees[index], attendees:$session.attendees, nat:session.attendees[index].nationality)
+                                    RegisteredDetail(attendee:$session.attendees[index], session:$session, nat:session.attendees[index].nationality)
                                 }
                                 label: {
                                     RegisteredRow(newAttendee: $session.attendees[index], updatedAttendees: $updatedAttendees, paid:session.attendees[index].paid,
@@ -59,15 +59,16 @@ struct RegisteredList: View {
         VStack {
             Button{
                 do {
-                    updateAttendee(message: updatedAttendees, token:session.token, completion: { success in
+                    let encoder = JSONEncoder()
+                    if let encoded = try? encoder.encode(session.attendees) {
+                        UserDefaults.standard.set(encoded, forKey: "attendees")
+                    }                    
+                    updateTableAttendee(attendees: updatedAttendees, token:session.token, completion: { success in
                         print(success)
                     })
                 }
             }label: {
-                VStack(spacing: 6) {
-                    Image(systemName: "icloud.and.arrow.up.fill")
-                    Text("Update check in")
-                }.frame(maxWidth: .infinity)
+                designButton(icon: "icloud.and.arrow.up.fill", text: "Save list")
             }
         }
     }
@@ -77,7 +78,7 @@ struct RegisteredList: View {
     struct Preview: View {
         @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
         var body: some View {
-            RegisteredList(session: session)
+            RegisteredList(session: $session)
         }
     }
     return Preview()

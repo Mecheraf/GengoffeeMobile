@@ -17,9 +17,6 @@
 		3395A8492C2C68930057CA11 /* RegisteredDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8482C2C68930057CA11 /* RegisteredDetail.swift */; };
 		3395A84B2C2C6BCC0057CA11 /* RegisteredRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A84A2C2C6BCC0057CA11 /* RegisteredRow.swift */; };
 		3395A84D2C2C6C410057CA11 /* RegisteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A84C2C2C6C410057CA11 /* RegisteredList.swift */; };
-		3395A8502C36E8460057CA11 /* AttendeesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A84F2C36E8460057CA11 /* AttendeesList.swift */; };
-		3395A8522C36E8550057CA11 /* AttendeesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8512C36E8540057CA11 /* AttendeesRow.swift */; };
-		3395A8542C36E8610057CA11 /* AttendeesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8532C36E8610057CA11 /* AttendeesDetails.swift */; };
 		3395A8592C36EEF10057CA11 /* AttendeesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8582C36EEF10057CA11 /* AttendeesService.swift */; };
 		3395A85D2C38B59A0057CA11 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A85C2C38B59A0057CA11 /* TableModel.swift */; };
 		3395A8612C41DAF80057CA11 /* ColorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395A8602C41DAF80057CA11 /* ColorService.swift */; };
@@ -73,9 +70,6 @@
 		3395A8482C2C68930057CA11 /* RegisteredDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredDetail.swift; sourceTree = "<group>"; };
 		3395A84A2C2C6BCC0057CA11 /* RegisteredRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredRow.swift; sourceTree = "<group>"; };
 		3395A84C2C2C6C410057CA11 /* RegisteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredList.swift; sourceTree = "<group>"; };
-		3395A84F2C36E8460057CA11 /* AttendeesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesList.swift; sourceTree = "<group>"; };
-		3395A8512C36E8540057CA11 /* AttendeesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesRow.swift; sourceTree = "<group>"; };
-		3395A8532C36E8610057CA11 /* AttendeesDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesDetails.swift; sourceTree = "<group>"; };
 		3395A8582C36EEF10057CA11 /* AttendeesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesService.swift; sourceTree = "<group>"; };
 		3395A85C2C38B59A0057CA11 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		3395A8602C41DAF80057CA11 /* ColorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorService.swift; sourceTree = "<group>"; };
@@ -149,16 +143,6 @@
 				3395A8462C2C54A10057CA11 /* EventDetail.swift */,
 			);
 			path = DisplayEvents;
-			sourceTree = "<group>";
-		};
-		3395A84E2C36E81C0057CA11 /* Attendees */ = {
-			isa = PBXGroup;
-			children = (
-				3395A84F2C36E8460057CA11 /* AttendeesList.swift */,
-				3395A8512C36E8540057CA11 /* AttendeesRow.swift */,
-				3395A8532C36E8610057CA11 /* AttendeesDetails.swift */,
-			);
-			path = Attendees;
 			sourceTree = "<group>";
 		};
 		3395A8552C36E9000057CA11 /* Tables */ = {
@@ -297,7 +281,6 @@
 				3350D5BA2D6A190E00FEBDD0 /* AddRegister */,
 				3350D5862D5C6D1500FEBDD0 /* WaitingList */,
 				3395A8552C36E9000057CA11 /* Tables */,
-				3395A84E2C36E81C0057CA11 /* Attendees */,
 				33B2BE7B2C273CCF00E5B837 /* register */,
 			);
 			path = views;
@@ -468,7 +451,6 @@
 				33B2BE6D2C2479A100E5B837 /* DateService.swift in Sources */,
 				3395A8432C2C4C460057CA11 /* EventRow.swift in Sources */,
 				33B2BE652C1EFF0C00E5B837 /* EventService.swift in Sources */,
-				3395A8522C36E8550057CA11 /* AttendeesRow.swift in Sources */,
 				3395A8472C2C54A10057CA11 /* EventDetail.swift in Sources */,
 				3395A85D2C38B59A0057CA11 /* TableModel.swift in Sources */,
 				33B2BE342C1DCDAA00E5B837 /* ContentView.swift in Sources */,
@@ -480,11 +462,9 @@
 				33B9B7D92D5445F30039214D /* TablesService.swift in Sources */,
 				3395A8612C41DAF80057CA11 /* ColorService.swift in Sources */,
 				33B2BE362C1DCDAA00E5B837 /* Item.swift in Sources */,
-				3395A8542C36E8610057CA11 /* AttendeesDetails.swift in Sources */,
 				33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */,
 				3395A8492C2C68930057CA11 /* RegisteredDetail.swift in Sources */,
 				33B9B7D72D4F5A820039214D /* TablePlan.swift in Sources */,
-				3395A8502C36E8460057CA11 /* AttendeesList.swift in Sources */,
 				3395A84B2C2C6BCC0057CA11 /* RegisteredRow.swift in Sources */,
 				33B9B7D12D4C80DE0039214D /* Colors.swift in Sources */,
 				33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */,

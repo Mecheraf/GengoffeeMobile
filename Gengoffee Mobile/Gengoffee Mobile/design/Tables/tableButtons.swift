@@ -39,33 +39,13 @@ struct newTableButton:View {
 struct updateAttendeesTableButton:View {
     @Binding var session:MainModel
     var body : some View {
-        Button("Upload attendees"){
+        Button("Save attendees"){
             do {
                 updateTableAttendee(attendees: session.attendees, token: session.token, completion: { success in
                     print(success)
                 })
             }
         }
-    }
-}
-
-struct getAttendeesButton:View {
-    @Binding  var attendees: [Attendee]
-    @State var token:String
-    @State var idEvent:Int
-
-    var body : some View {
-            Button("Update", action: {
-                Task { //Need to update the attendees table before 
-                    getAttendees(token: token, finished: { success in
-                        Task {
-                            getTemporaryAttendees(finished: { tempAttendees in
-                                attendees = fusionListAttendees(arr1: tempAttendees , arr2: success)
-                            })
-                        }
-                    })
-                }
-            })
     }
 }
 

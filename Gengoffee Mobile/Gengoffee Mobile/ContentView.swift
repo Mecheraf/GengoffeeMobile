@@ -23,7 +23,7 @@ struct ContentView: View {
                     case .checkIn, .tables, .createEvent:
                         EventList(session: $session)
                     case .plus:
-                        AddRegisterView(session: session)
+                        AddBulk(session: session)
                     case .settings:
                         Settings(session: $session)
                     }

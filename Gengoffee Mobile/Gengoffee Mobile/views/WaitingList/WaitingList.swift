@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct WaitingList:View {
-    @Binding var attendees: [Attendee]
+    @Binding var session: MainModel
     @State var isSelected:Bool = false
     @Binding var selectedUser:Int
     @StateObject var containerSize = UIScreenSize()
@@ -18,13 +18,13 @@ struct WaitingList:View {
     var body: some View {
         HStack{
             VStack{
-                AttendeesAlignement(attendees:$attendees, selectedUser: $selectedUser)
+                AttendeesAlignement(session:$session, selectedUser: $selectedUser)
                     .onTapGesture {
                         if(selectedUser != 0){
-                            attendees[findIdUser(attendees: attendees, idUser: selectedUser)].tablenumber = -1
+                            session.attendees[findIdUser(attendees: session.attendees, idUser: selectedUser)].tablenumber = -1
                             selectedUser = 0
                             let encoder = JSONEncoder()
-                            if let encoded = try? encoder.encode(attendees) {
+                            if let encoded = try? encoder.encode(session.attendees) {
                                 UserDefaults.standard.set(encoded, forKey: "attendees")
 
                             }
@@ -60,11 +60,11 @@ struct WaitingList:View {
 
 #Preview {
     struct Preview: View {
-        @State var attendees = setAttendees
+        @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
         @State var selectedUser:Int = 0
 
         var body: some View {
-            WaitingList(attendees: $attendees, isSelected: false, selectedUser: $selectedUser)
+            WaitingList(session: $session, isSelected: false, selectedUser: $selectedUser)
         }
     }
     return Preview()

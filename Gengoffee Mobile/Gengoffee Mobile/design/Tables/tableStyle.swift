@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct TableStyle: View {
-    @Binding var attendees:[Attendee]
+    @Binding var session:MainModel
     @State var number:Int = 0
     @Binding var selectedUser:Int
     let maxWidth:CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 230 : 150
@@ -18,13 +18,13 @@ struct TableStyle: View {
         ZStack(){
             VStack{
                 LazyVGrid(columns: tableGridLayout){
-                    ForEach(Array(attendees.enumerated()), id:\.offset){ index,attendee in
+                    ForEach(Array(session.attendees.enumerated()), id:\.offset){ index,attendee in
                         if(attendee.tablenumber == number && attendee.paid > 0){
-                            AttendeePin(attendee:$attendees[index], selectedUser: $selectedUser)
+                            AttendeePin(attendee:$session.attendees[index], selectedUser: $selectedUser)
                             .contextMenu(menuItems:
                             {
-                                editAttendee(attendee: $attendees[index], attendees: $attendees)
-                                deleteAttendeeButton(attendee: attendee, attendees: $attendees)
+                                editAttendee(attendee: $session.attendees[index], session: $session)
+                                deleteAttendeeButton(attendee: attendee, attendees: $session.attendees)
                             })
                         }
                     }
@@ -42,13 +42,13 @@ struct TableStyle: View {
                             .cornerRadius(4)
                             .onTapGesture {
                                 if(selectedUser != 0){
-                                    if(attendees[findIdUser(attendees: attendees, idUser: selectedUser)].tablenumber != 0) {
-                                        attendees[findIdUser(attendees: attendees, idUser: selectedUser)].changed = 1
+                                    if(session.attendees[findIdUser(attendees: session.attendees, idUser: selectedUser)].tablenumber != 0) {
+                                        session.attendees[findIdUser(attendees: session.attendees, idUser: selectedUser)].changed = 1
                                     }
-                                    attendees[findIdUser(attendees: attendees, idUser: selectedUser)].tablenumber = number
+                                    session.attendees[findIdUser(attendees: session.attendees, idUser: selectedUser)].tablenumber = number
                                     selectedUser = 0
                                     let encoder = JSONEncoder()
-                                    if let encoded = try? encoder.encode(attendees) {
+                                    if let encoded = try? encoder.encode(session.attendees) {
                                         UserDefaults.standard.set(encoded, forKey: "attendees")
                                     }
                                 }
@@ -56,7 +56,7 @@ struct TableStyle: View {
                     )
                 TablePin(number: number)
                     .position(x:12, y:12)
-                ratioPin(attendees: $attendees, tableNumber: number)
+                ratioPin(attendees: $session.attendees, tableNumber: number)
                     .position(x:maxWidth - 15, y:12)
             }
             

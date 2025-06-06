@@ -21,9 +21,9 @@ struct attendeeButtons:View {
 
 struct editAttendee:View {
     @Binding var attendee:Attendee
-    @Binding var attendees:[Attendee]
+    @Binding var session:MainModel
     var body : some View {
-        NavigationLink(destination: RegisteredDetail(attendee: $attendee, attendees:$attendees, nat:attendee.nationality, isChanged:attendee.changed)) {
+        NavigationLink(destination: RegisteredDetail(attendee: $attendee, session:$session, nat:attendee.nationality, isChanged:attendee.changed)) {
             Text("Edit user")
             Image(systemName: "heart")
         }

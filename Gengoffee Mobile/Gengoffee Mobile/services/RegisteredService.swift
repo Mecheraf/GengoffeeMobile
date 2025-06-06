@@ -114,7 +114,7 @@ func updateAttendee(message: [Attendee], token:String, completion: @escaping (_ 
     request.httpMethod = "PUT"
     
     let data = try! JSONEncoder().encode(tmp)
-    print(message)
+
     request.httpBody = data
     request.setValue(
         "application/json",
@@ -155,3 +155,5 @@ func countPaidUsers(attendees:[Attendee]) -> Int {
     }
     return res
 }
+
+

@@ -19,7 +19,7 @@ struct TablePlanView: View {
         NavigationStack{
             VStack {
                 HStack{
-                    WaitingList(attendees:$session.attendees, selectedUser: $selectedUser)
+                    WaitingList(session:$session, selectedUser: $selectedUser)
                 }
                 Divider()
                 NavigationStack{
@@ -27,7 +27,7 @@ struct TablePlanView: View {
                     ScrollView(.vertical){
                         LazyVGrid(columns: tableGridLayout){
                             ForEach(tables, id:\.self.number){ table in
-                                TableStyle(attendees: $session.attendees, number:table.number, selectedUser: $selectedUser)
+                                TableStyle(session:$session, number:table.number, selectedUser: $selectedUser)
                                     .contextMenu(menuItems:
                                                     {
                                         Button{

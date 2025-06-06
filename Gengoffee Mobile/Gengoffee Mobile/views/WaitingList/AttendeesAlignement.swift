@@ -9,20 +9,20 @@ import SwiftUI
 import Foundation
 
 struct AttendeesAlignement:View {
-    @Binding var attendees: [Attendee]
+    @Binding var session: MainModel
     @Binding var selectedUser:Int
     
     var body: some View {
         VStack{
             ScrollView {
                 LazyVGrid(columns: waitingGridLayout){
-                    ForEach(Array(attendees.enumerated()), id:\.offset){ index, attendee in
+                    ForEach(Array(session.attendees.enumerated()), id:\.offset){ index, attendee in
                         if(attendee.tablenumber <= 0 && attendee.paid > 0){
 //                        if(attendee.tablenumber == 0){
-                            AttendeePin(attendee:$attendees[index], selectedUser: $selectedUser)
+                            AttendeePin(attendee:$session.attendees[index], selectedUser: $selectedUser)
                                 .contextMenu(menuItems: {
-                                    editAttendee(attendee: $attendees[index], attendees: $attendees)
-                                    deleteAttendeeButton(attendee: attendee, attendees: $attendees)
+                                    editAttendee(attendee: $session.attendees[index], session: $session)
+                                    deleteAttendeeButton(attendee: attendee, attendees: $session.attendees)
                                     
                                 }
                                 )
@@ -40,9 +40,9 @@ struct AttendeesAlignement:View {
     struct Preview: View {
         @State var attendees = setAttendees
         @State var selectedUser:Int = 0
-
+        @State var session:MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
         var body: some View {
-            AttendeesAlignement(attendees: $attendees, selectedUser: $selectedUser)
+            AttendeesAlignement(session: $session, selectedUser: $selectedUser)
         }
     }
     return Preview()

@@ -50,7 +50,18 @@ struct CreateEventView: View {
                     Section("Language") {
                         Picker("Type of event", selection: $type) {
                             ForEach(types, id: \.self) { type in
-                                Text(type).tag(type)
+                                switch type{
+                                case "en":
+                                    Text("English").tag(type)
+                                case "jp":
+                                    Text("Japanese").tag(type)
+                                case "karaoke":
+                                    Text("Karaoke").tag(type)
+                                default:
+                                    Text("French").tag(type)
+                                }
+                                
+                                
                             }
                         }
                         .frame(height: 100)

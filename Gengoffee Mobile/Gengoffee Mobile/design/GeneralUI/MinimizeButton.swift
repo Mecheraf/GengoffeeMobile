@@ -22,11 +22,11 @@ struct minimizeButton: View {
 
 #Preview {
     struct Preview: View {
-        @State var attendees = setAttendees
+        @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
         @State var selectedUser:Int = 0
 
         var body: some View {
-            WaitingList(attendees: $attendees, isSelected: false, selectedUser: $selectedUser)
+            WaitingList(session: $session, isSelected: false, selectedUser: $selectedUser)
         }
     }
     return Preview()

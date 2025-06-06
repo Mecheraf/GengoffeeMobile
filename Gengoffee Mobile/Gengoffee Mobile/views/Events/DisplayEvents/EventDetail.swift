@@ -27,7 +27,7 @@ struct EventDetail: View {
                 }
             }
             if session.selectedTab == .checkIn || session.selectedTab == .createEvent  {
-                RegisteredList(idEvent:event.id!, session: session)
+                RegisteredList(idEvent:event.id!, session: $session)
             }
             if session.selectedTab == .tables  {
                 TablePlanView(session: $session, tables:[])

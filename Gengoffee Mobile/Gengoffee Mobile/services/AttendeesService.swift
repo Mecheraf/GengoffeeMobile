@@ -10,19 +10,21 @@ import SwiftUI
 
 func updateTableAttendee(attendees: [Attendee], token:String, completion: @escaping (_ success: Bool) -> Void){
     
+    if(token == "1"){
+        return
+    }
+    
     @StateObject var golbalAPI = APIModel()
     
     var values:[Attendee] = []
-    
+        
     attendees.forEach{ element in
-        if(element.tablenumber != 0 ){
-            values.append(element)
-        }
+        values.append(element)
     }
     let message = [
         "attendees": values
     ]
-        
+            
     let url = URL(string: golbalAPI.API_Prod+"updateTableAttendee")!
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
@@ -32,6 +34,10 @@ func updateTableAttendee(attendees: [Attendee], token:String, completion: @escap
     request.setValue(
         "application/json",
         forHTTPHeaderField: "Content-Type"
+    )
+    request.setValue(
+        "Bearer \(token)",
+        forHTTPHeaderField: "Authorization"
     )
     
     var success:Bool! = false
@@ -290,4 +296,14 @@ func getTemporaryAttendees(finished: @escaping (_ success: [Attendee])->Void) {
     }
     task.resume()
 }
+
+#Preview {
+    struct Preview: View {
+        var body: some View {
+            ContentView()
+        }
+    }
+    return Preview()
+}
+
 

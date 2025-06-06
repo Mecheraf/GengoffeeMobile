@@ -41,11 +41,11 @@ struct ratioPin:View {
 
 #Preview {
     struct Preview: View {
-        @State var attendees = setAttendees
+        @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
         @State var selectedUser:Int = 0
 
         var body: some View {
-            TableStyle(attendees: $attendees, number:1, selectedUser: $selectedUser)
+            TableStyle(session: $session, number:1, selectedUser: $selectedUser)
         }
     }
     return Preview()

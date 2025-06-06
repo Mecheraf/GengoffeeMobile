@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RegisteredDetail: View {
     @Binding var attendee: Attendee
-    @Binding var attendees: [Attendee]
+    @Binding var session: MainModel
     let nationalities:[String] = ["jp", "fr", "en", "ハーフ", ""]
     @State var nat:String = ""
     @State var isChanged:Int = 0
@@ -50,15 +50,23 @@ struct RegisteredDetail: View {
             }
             Button{
                 do {
-                    updateUser(message: [attendee],
-                           completion: { success in
-                                            print(success)
-                                        }
-                    )
-                    addUpdatedAttendee(newAttendee: attendee, list: &attendees)
+                    if(attendee.idUser > 0 ){
+                        updateUser(message: [attendee],
+                               completion: { success in
+                                                print(success)
+                                            }
+                        )
+                    } else {
+                        updateTableAttendee(attendees: [attendee], token: session.token,
+                               completion: { success in
+                                                print(success)
+                                            }
+                        )
+                    }
+                    addUpdatedAttendee(newAttendee: attendee, list: &session.attendees)
 
                 }
-            }label: {designButton(icon: "person.fill.badge.plus", text: "Update")}
+            }label: {designButton(icon: "person.fill.badge.plus", text: "Save")}
         }
         
     }
@@ -67,9 +75,9 @@ struct RegisteredDetail: View {
 #Preview {
     struct Preview: View {
         @State var attendee:Attendee = steve
-        @State private var updatedAttendees:[Attendee] = []
+        @State var session:MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
         var body: some View {
-            RegisteredDetail(attendee: $attendee, attendees:$updatedAttendees)
+            RegisteredDetail(attendee: $attendee, session: $session)
         }
     }
     return Preview()
