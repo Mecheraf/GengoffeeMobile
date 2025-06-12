@@ -18,24 +18,25 @@ struct EventList: View {
             List(session.events, id: \.id) { event in
                 if(session.events.count > 0){
                     NavigationLink {
-                        EventDetail(event:event, session:$session)
+                        EventDetail(event: event, session:$session)
                     } label: {
                         EventRow(event: event)
                     }
                     
                 } else if (session.events.count == 0 && session.selectedTab == .tables) {
                     NavigationLink {
-                        EventDetail(event:blankEvent,  session:$session)
+                        EventDetail(event: event,  session:$session)
                     } label: {
-                        EventRow(event: blankEvent)
+                        EventRow(event: event)
                     }
                 }
             }
+
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-                    CreateEventView(session: session)
+                    CreateEventView(token: session.token)
                 } label : {
                     Text("Create event")
                         .frame(height: 20)

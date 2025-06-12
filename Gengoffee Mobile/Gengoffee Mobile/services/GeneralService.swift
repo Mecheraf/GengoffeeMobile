@@ -80,13 +80,3 @@ func loginFunc(username:String, password:String, finished: @escaping (_ success:
     }
     task.resume()
 }
-
-#Preview {
-    struct Preview: View {
-        @State var session: MainModel = MainModel(events: [], attendees: [], selectedTab: .checkIn, token:"")
-        var body: some View {
-            Settings(session: $session)
-        }
-    }
-    return Preview()
-}

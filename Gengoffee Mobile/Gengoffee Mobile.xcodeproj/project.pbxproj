@@ -38,7 +38,7 @@
 		33B2BE752C25FD6800E5B837 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE742C25FD6800E5B837 /* UserModel.swift */; };
 		33B2BE7A2C26ED8100E5B837 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2BE792C26ED8100E5B837 /* Variables.swift */; };
 		33B9B7D12D4C80DE0039214D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B7D02D4C80DB0039214D /* Colors.swift */; };
-		33B9B7D72D4F5A820039214D /* TablePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B7D62D4F5A820039214D /* TablePlan.swift */; };
+		33B9B7D72D4F5A820039214D /* TablePlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B7D62D4F5A820039214D /* TablePlanView.swift */; };
 		33B9B7D92D5445F30039214D /* TablesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B7D82D5445F00039214D /* TablesService.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +94,7 @@
 		33B2BE742C25FD6800E5B837 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		33B2BE792C26ED8100E5B837 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		33B9B7D02D4C80DB0039214D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		33B9B7D62D4F5A820039214D /* TablePlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablePlan.swift; sourceTree = "<group>"; };
+		33B9B7D62D4F5A820039214D /* TablePlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablePlanView.swift; sourceTree = "<group>"; };
 		33B9B7D82D5445F00039214D /* TablesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +148,7 @@
 		3395A8552C36E9000057CA11 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
-				33B9B7D62D4F5A820039214D /* TablePlan.swift */,
+				33B9B7D62D4F5A820039214D /* TablePlanView.swift */,
 			);
 			path = Tables;
 			sourceTree = "<group>";
@@ -464,7 +464,7 @@
 				33B2BE362C1DCDAA00E5B837 /* Item.swift in Sources */,
 				33B2BE682C1EFF6F00E5B837 /* EventModel.swift in Sources */,
 				3395A8492C2C68930057CA11 /* RegisteredDetail.swift in Sources */,
-				33B9B7D72D4F5A820039214D /* TablePlan.swift in Sources */,
+				33B9B7D72D4F5A820039214D /* TablePlanView.swift in Sources */,
 				3395A84B2C2C6BCC0057CA11 /* RegisteredRow.swift in Sources */,
 				33B9B7D12D4C80DE0039214D /* Colors.swift in Sources */,
 				33B2BE5F2C1DD03D00E5B837 /* FooterComponent.swift in Sources */,
@@ -641,6 +641,8 @@
 				DEVELOPMENT_TEAM = NMC55Y56P4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Gengoffee Staff";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -650,7 +652,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "gengoffee.Gengoffee-Mobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -670,6 +672,8 @@
 				DEVELOPMENT_TEAM = NMC55Y56P4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Gengoffee Staff";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -679,7 +683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "gengoffee.Gengoffee-Mobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

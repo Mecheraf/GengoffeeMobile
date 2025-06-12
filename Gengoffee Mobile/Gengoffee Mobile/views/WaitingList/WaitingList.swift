@@ -13,23 +13,14 @@ struct WaitingList:View {
     @State var isSelected:Bool = false
     @Binding var selectedUser:Int
     @StateObject var containerSize = UIScreenSize()
+    @State var idEvent:Int = 0
+
 
     
     var body: some View {
         HStack{
             VStack{
-                AttendeesAlignement(session:$session, selectedUser: $selectedUser)
-                    .onTapGesture {
-                        if(selectedUser != 0){
-                            session.attendees[findIdUser(attendees: session.attendees, idUser: selectedUser)].tablenumber = -1
-                            selectedUser = 0
-                            let encoder = JSONEncoder()
-                            if let encoded = try? encoder.encode(session.attendees) {
-                                UserDefaults.standard.set(encoded, forKey: "attendees")
-
-                            }
-                        }
-                    }
+                AttendeesAlignement(session:$session, selectedUser: $selectedUser, idEvent:idEvent)
                     .padding([.top, .bottom], 8)
             }
             .background{
@@ -58,13 +49,12 @@ struct WaitingList:View {
 }
 
 
+
 #Preview {
     struct Preview: View {
         @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
-        @State var selectedUser:Int = 0
-
         var body: some View {
-            WaitingList(session: $session, isSelected: false, selectedUser: $selectedUser)
+            TablePlanView(session: $session)
         }
     }
     return Preview()

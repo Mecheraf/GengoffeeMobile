@@ -24,7 +24,7 @@ func updateTableAttendee(attendees: [Attendee], token:String, completion: @escap
     let message = [
         "attendees": values
     ]
-            
+                
     let url = URL(string: golbalAPI.API_Prod+"updateTableAttendee")!
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
@@ -60,23 +60,6 @@ func updateTableAttendee(attendees: [Attendee], token:String, completion: @escap
         completion(success)
     }
     task.resume()
-}
-
-func createTables(attendees:[Attendee]) -> [TableModel] {
-    var result:[TableModel] = []
-    for index in 0...20 {
-        result.append(TableModel(
-            number:index,
-            attendees: []
-            )
-        )
-    }
-    
-    attendees.forEach{ attendee in
-        result[attendee.tablenumber].attendees.append(attendee)
-    }
-    
-    return result
 }
 
 func convertNewUser(user:User, idEvent:Int) -> newUser{

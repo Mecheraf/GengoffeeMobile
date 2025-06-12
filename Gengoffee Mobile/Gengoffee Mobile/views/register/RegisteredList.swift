@@ -20,24 +20,24 @@ struct RegisteredList: View {
                 List{
                     Section("On list"){
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
-                            if (attendee.paid == registerState[0] && (attendee.idEvent == idEvent || attendee.idEvent == 0)) {
+                            if (attendee.paid == registerState[0] && checkEvent(attendee: attendee, idEvent: idEvent)) {
                                 NavigationLink {
-                                    RegisteredDetail(attendee:$session.attendees[index], session:$session, nat:session.attendees[index].nationality)
+                                    RegisteredDetail(attendee: $session.attendees[index], session: $session, nat: session.attendees[index].nationality)
                                 }
                                 label: {
-                                    RegisteredRow(newAttendee: $session.attendees[index],  updatedAttendees: $updatedAttendees, paid:session.attendees[index].paid, registerState:registerState)
+                                    RegisteredRow(newAttendee: $session.attendees[index],  updatedAttendees: $updatedAttendees, paid: session.attendees[index].paid, registerState:registerState)
                                 }
                             }
                         }
                     }
-                    Section(session.selectedTab == .createEvent ?  "Approved" : "Paid : \(countPaidUsers(attendees: session.attendees))"){
+                    Section(session.selectedTab == .createEvent ?  "Approved" : "Paid : \(countPaidUsers(attendees: getAttendeesPerEvent(idEvent: idEvent, attendees:session.attendees)))"){
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
-                            if (registerState.contains(attendee.paid) && attendee.paid > registerState[0] && (attendee.idEvent == idEvent || attendee.idEvent == 0)) {
+                            if (registerState.contains(attendee.paid) && attendee.paid > registerState[0] && checkEvent(attendee: attendee, idEvent: idEvent)) {
                                 NavigationLink {
-                                    RegisteredDetail(attendee:$session.attendees[index], session:$session, nat:session.attendees[index].nationality)
+                                    RegisteredDetail(attendee: $session.attendees[index], session:$session, nat: session.attendees[index].nationality)
                                 }
                                 label: {
-                                    RegisteredRow(newAttendee: $session.attendees[index], updatedAttendees: $updatedAttendees, paid:session.attendees[index].paid,
+                                    RegisteredRow(newAttendee: $session.attendees[index], updatedAttendees: $updatedAttendees, paid: session.attendees[index].paid,
                                         registerState:registerState)
                                 }
                             }
@@ -47,13 +47,17 @@ struct RegisteredList: View {
             }
         }.refreshable {
             Task { //Need to update the attendees table before
-                getAttendees(token: session.token, finished: { attendees in
-                    Task {
-                        getTemporaryAttendees(finished: { tempAttendees in
-                            session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: attendees)
-                        })
-                    }
-                })
+                if(session.token == "1"){
+                    session.attendees = getLocalAttendees()
+                } else {
+                    getAttendees(token: session.token, finished: { attendees in
+                        Task {
+                            getTemporaryAttendees(finished: { tempAttendees in
+                                session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: attendees)
+                            })
+                        }
+                    })
+                }
             }
         }
         VStack {
@@ -78,7 +82,7 @@ struct RegisteredList: View {
     struct Preview: View {
         @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
         var body: some View {
-            RegisteredList(session: $session)
+            RegisteredList(idEvent: 0, session: $session)
         }
     }
     return Preview()

@@ -22,13 +22,3 @@ extension View {
             .padding(10)
     }
 }
-
-#Preview {
-    struct Preview: View {
-        @State var session: MainModel = MainModel(events: [], attendees: [], selectedTab: .checkIn, token:"")
-        var body: some View {
-            Settings(session: $session)
-        }
-    }
-    return Preview()
-}

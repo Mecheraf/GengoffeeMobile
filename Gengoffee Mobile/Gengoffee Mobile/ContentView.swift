@@ -28,6 +28,13 @@ struct ContentView: View {
                         Settings(session: $session)
                     }
                 Spacer()
+                    Button{
+                        do {
+                            print(session.events)
+                        }
+                    }label: {
+                        designButton(icon: "icloud.and.arrow.up.fill", text: "Print events")
+                    }
                     FooterComponent(selectedTab: $session.selectedTab)
                     .padding([.top], 20)
                 }
@@ -37,7 +44,7 @@ struct ContentView: View {
                             getAttendees(token: session.token, finished: { success in
                                 Task {
                                     getTemporaryAttendees(finished: { tempAttendees in
-                                        session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: success)
+                                        session.attendees = fusionListAttendees(arr1: tempAttendees, arr2: success)
                                         Task {
                                             session.events = await assignAttendeesToEvents(limit:5, attendees: session.attendees)
                                         }

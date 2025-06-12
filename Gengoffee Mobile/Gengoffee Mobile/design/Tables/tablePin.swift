@@ -15,7 +15,6 @@ struct TablePin:View {
         Text(String(number))
             .font(.system(size:fontSize))
             .foregroundColor(colorText)
-            
     }
 }
 
@@ -24,14 +23,15 @@ struct ratioPin:View {
     @State var colorText = Color.Text
     @State var fontSize:CGFloat = 14
     @State var tableNumber:Int = 0
+    @State var idEvent:Int = 0
 
     var body: some View {
         HStack(spacing: 1){
-            Text(String(countTableUsers(attendees: attendees, type: ["fr"], tableNumber: tableNumber)))
+            Text(String(countTableUsers(attendees: getAttendeesPerEvent(idEvent: idEvent, attendees: attendees), type: ["fr"], tableNumber: tableNumber)))
                 .font(.system(size:fontSize))
                 .foregroundColor(Color.gengoffeeBlue)
             Text("/")
-            Text(String(countTableUsers(attendees: attendees, type: ["jp", "ハーフ", "en"], tableNumber: tableNumber)))
+            Text(String(countTableUsers(attendees: getAttendeesPerEvent(idEvent: idEvent, attendees: attendees), type: ["jp", "ハーフ", "en"], tableNumber: tableNumber)))
                 .font(.system(size:fontSize))
                 .foregroundColor(Color.gengoffeeRed)
         }

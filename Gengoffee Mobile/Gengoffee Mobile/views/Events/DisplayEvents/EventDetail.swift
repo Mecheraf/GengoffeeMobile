@@ -27,30 +27,10 @@ struct EventDetail: View {
                 }
             }
             if session.selectedTab == .checkIn || session.selectedTab == .createEvent  {
-                RegisteredList(idEvent:event.id!, session: $session)
+                RegisteredList(idEvent: event.id!, session: $session)
             }
             if session.selectedTab == .tables  {
-                TablePlanView(session: $session, tables:[])
-            }
-        }.task{
-            do {
-                if(session.token  != "1"){
-                    getAttendees(token: session.token, finished: { attendees in
-                        Task {
-                            getTemporaryAttendees(finished: { tempAttendees in
-                                session.attendees = fusionListAttendees(arr1: tempAttendees , arr2: attendees)
-                            })
-                            session.events = await assignAttendeesToEvents(limit:5, attendees: session.attendees)
-                        }
-                    })
-                } else {
-                    if let data = defaults.object(forKey: "attendees") as? Data {
-                        let decoder = JSONDecoder()
-                        if let savedData = try? decoder.decode([Attendee].self, from: data) {
-                            session.attendees = savedData
-                        }
-                    }
-                }
+                TablePlanView(session: $session, tables:checkTables(attendees: session.attendees), idEvent: event.id!)
             }
         }
     }

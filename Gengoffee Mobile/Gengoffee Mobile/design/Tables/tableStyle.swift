@@ -13,19 +13,23 @@ struct TableStyle: View {
     @State var number:Int = 0
     @Binding var selectedUser:Int
     let maxWidth:CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 230 : 150
+    @State var idEvent:Int = 0
+
 
     var body: some View {
         ZStack(){
             VStack{
                 LazyVGrid(columns: tableGridLayout){
                     ForEach(Array(session.attendees.enumerated()), id:\.offset){ index,attendee in
-                        if(attendee.tablenumber == number && attendee.paid > 0){
-                            AttendeePin(attendee:$session.attendees[index], selectedUser: $selectedUser)
-                            .contextMenu(menuItems:
-                            {
-                                editAttendee(attendee: $session.attendees[index], session: $session)
-                                deleteAttendeeButton(attendee: attendee, attendees: $session.attendees)
-                            })
+                        if(attendee.idEvent == 0 || attendee.idEvent == idEvent){
+                            if(attendee.tablenumber == number && attendee.paid > 0){
+                                AttendeePin(attendee:$session.attendees[index], selectedUser: $selectedUser)
+                                .contextMenu(menuItems:
+                                {
+                                    editAttendee(attendee: $session.attendees[index], session: $session)
+                                    deleteAttendeeButton(attendee: attendee, attendees: $session.attendees)
+                                })
+                            }
                         }
                     }
                 }.frame(minWidth: 150, maxWidth: maxWidth)
@@ -56,7 +60,7 @@ struct TableStyle: View {
                     )
                 TablePin(number: number)
                     .position(x:12, y:12)
-                ratioPin(attendees: $session.attendees, tableNumber: number)
+                ratioPin(attendees: $session.attendees, tableNumber: number, idEvent:idEvent)
                     .position(x:maxWidth - 15, y:12)
             }
             
@@ -66,7 +70,7 @@ struct TableStyle: View {
 
 #Preview {
     struct Preview: View {
-        @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
+        @State var session: MainModel = MainModel(events: [blankEvent], attendees: setAttendees, selectedTab: .tables, token:"")
         var body: some View {
             TablePlanView(session: $session)
         }

@@ -37,14 +37,6 @@ struct AttendeePin:View {
                 .onTapGesture {
                     updateUser(selectedUser: &selectedUser, id: attendee.idUser)
                 }
-                .simultaneousGesture(
-                    LongPressGesture(minimumDuration: 0.25)
-                        .onEnded() { value in
-                            updateUser(selectedUser: &selectedUser, id: attendee.idUser)
-                            isPressing = value
-                        }
-                )
-            
         }
     }
 }

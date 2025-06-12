@@ -82,11 +82,9 @@ struct EventDisplay: View {
 
 #Preview {
     struct Preview: View {
-        @State var selectedTab:FooterSelection = .tables
-        @State var token:String = ""
         @State var session: MainModel = MainModel(events: [blankEvent], attendees: getLocalAttendees(), selectedTab: .checkIn, token:"")
         var body: some View {
-            EventDetail(event:event, session: $session)
+            EventDetail(event:blankEvent, session: $session)
 
         }
     }

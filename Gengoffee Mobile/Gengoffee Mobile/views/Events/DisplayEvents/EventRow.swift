@@ -14,7 +14,8 @@ var eventest = Event(
     date: "2024-07-07T16:00:00.000Z",
     place: "Les Berthom",
     subscribe: 1,
-    location: "PARIS"
+    location: "PARIS",
+    attendees: []
 )
 
 var eventoust = Event(
@@ -23,7 +24,8 @@ var eventoust = Event(
     date: "2024-07-07T16:00:00.000Z",
     place: "Food Hall Blast",
     subscribe: 1,
-    location: "東京"
+    location: "東京",
+    attendees: []
 )
                      
 

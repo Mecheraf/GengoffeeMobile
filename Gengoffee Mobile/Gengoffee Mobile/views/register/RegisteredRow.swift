@@ -44,7 +44,7 @@ struct RegisteredRow: View {
     struct Preview: View {
         @State var session: MainModel = MainModel(events: [blankEvent], attendees: setAttendees, selectedTab: .tables, token:"")
         var body: some View {
-            RegisteredList(session: $session)
+            RegisteredList(idEvent: 0, session: $session)
         }
     }
     return Preview()

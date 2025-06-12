@@ -56,6 +56,11 @@ struct RegisteredDetail: View {
                                                 print(success)
                                             }
                         )
+                        updateTableAttendee(attendees: [attendee], token: session.token,
+                               completion: { success in
+                                                print(success)
+                                            }
+                        )
                     } else {
                         updateTableAttendee(attendees: [attendee], token: session.token,
                                completion: { success in

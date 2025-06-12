@@ -41,7 +41,8 @@ var eventsTest:[Event] = [
         date: "2024-07-07T16:00:00.000Z",
         place: "Les Berthom",
         subscribe: 1,
-        location: "PARIS"
+        location: "PARIS",
+        attendees: []
     ),
     Event(
         id: 129,
@@ -69,7 +70,8 @@ var event = Event(
     date: "2024-07-07T16:00:00.000Z",
     place: "Les Berthom",
     subscribe: 1,
-    location: "PARIS"
+    location: "PARIS",
+    attendees: []
 )
 
 var blankEvent = Event(
@@ -264,6 +266,8 @@ var adrien2 = Attendee(
     nationality: "fr",
     changed:0
 )
+
+
 
 var setAttendees:[Attendee] = [alan, mayu, salim, vincent, daigo, shiori, adrien, steve, alan2, mayu2, salim2, vincent2, daigo2, shiori2, adrien2]
 var setAttendeesShort:[Attendee] = [alan, mayu, salim, vincent, daigo, shiori, adrien]

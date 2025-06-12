@@ -88,3 +88,19 @@ func assignAttendeesToEvents(limit: Int, attendees: [Attendee]) async -> [Event]
     }
     return events
 }
+
+func updateAttendeesToEvents(events:inout [Event], attendees: [Attendee]){
+    do {
+        events.enumerated().forEach{ index, event in
+            events[index].attendees = getAttendeesPerEvent(idEvent: events[index].id!, attendees: attendees)
+        }
+    }
+}
+
+
+func checkEvent(attendee:Attendee, idEvent:Int) -> Bool {
+    if(attendee.idEvent == idEvent || attendee.idEvent == 0){
+        return true
+    }
+    return false
+}

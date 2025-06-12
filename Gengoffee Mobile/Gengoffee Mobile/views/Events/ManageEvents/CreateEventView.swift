@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct CreateEventView: View {
-    @State var session:MainModel
+    @State var token:String = "1"
     var firstname: String = ""
     @State private var place: String = ""
     @State private var type: String = "fr"
@@ -28,7 +28,8 @@ struct CreateEventView: View {
         date: "2024-07-16 16:00:00",
         place: "",
         subscribe: 0,
-        location: "PARIS"
+        location: "PARIS",
+        attendees: []
     )
     
 
@@ -83,7 +84,7 @@ struct CreateEventView: View {
                         self.message.place = place
                         self.message.date = dateToCET(date:date)
 
-                        addEvent(message: message, token:session.token, completion: { success in
+                        addEvent(message: message, token:token, completion: { success in
                             print(success)
                         })
                     }
@@ -99,18 +100,15 @@ struct CreateEventView: View {
                     }.frame(maxWidth: .infinity)
                 }
                 .disabled(self.place.isEmpty)
-                
-
             }
         }
-    
 }
 
 #Preview {
     struct Preview: View {
         @State var session: MainModel = MainModel(events: [blankEvent], attendees: getLocalAttendees(), selectedTab: .checkIn, token:"")
         var body: some View {
-            CreateEventView(session: session)
+            CreateEventView(token: session.token)
         }
     }
     return Preview()

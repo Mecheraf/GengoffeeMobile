@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct Event: Codable {
     let id: Int?
     var type: String
@@ -21,8 +20,6 @@ struct Event: Codable {
     mutating func assignAttendeesToEvent(attendees:[Attendee]) {
         self.attendees = getAttendeesPerEvent(idEvent: self.id ?? 0, attendees: attendees)
     }
-    
-
 }
 
 

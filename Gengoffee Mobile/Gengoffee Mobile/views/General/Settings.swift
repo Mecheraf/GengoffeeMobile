@@ -20,29 +20,29 @@ struct Settings:View {
                     }
                 } label: {Text("Reset Attendees")}
             }
-            LogoutView(token:$session.token)
-            }
-            .navigationTitle("Settings")
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Are you sure you want to delete this?"),
-                   message: Text("There is no undo"),
-                   primaryButton: .destructive(Text("Delete")) {
-                       do {
-                        addTemporaryAttendee(message: temporaryAttendees(
-                        type:0,
-                        attendees:[]
-                        ), token:session.token, completion: { success in
-                           print(success)
-                        })
-                       }
-                       
-                       resetDefaultsAttendee()
+            LogoutView(token: $session.token)
+        }
+        .navigationTitle("Settings")
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Are you sure you want to delete this?"),
+               message: Text("There is no undo"),
+               primaryButton: .destructive(Text("Delete")) {
+                   do {
+                    addTemporaryAttendee(message: temporaryAttendees(
+                    type:0,
+                    attendees:[]
+                    ), token: session.token, completion: { success in
+                       print(success)
+                    })
+                   }
+                   
+                   resetDefaultsAttendee()
 
-                   },
-                   secondaryButton: .cancel()
-                )
-            }
+               },
+               secondaryButton: .cancel()
+            )
+        }
         
     }
 }
