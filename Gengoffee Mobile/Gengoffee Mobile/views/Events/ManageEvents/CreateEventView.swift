@@ -85,7 +85,7 @@ struct CreateEventView: View {
                         self.message.date = dateToCET(date:date)
 
                         addEvent(message: message, token:token, completion: { success in
-                            print(success)
+                            print("Add event : ", success)
                         })
                     }
                 }label: {

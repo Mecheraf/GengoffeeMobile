@@ -27,10 +27,10 @@ struct EventDetail: View {
                 }
             }
             if session.selectedTab == .checkIn || session.selectedTab == .createEvent  {
-                RegisteredList(idEvent: event.id!, session: $session)
+                RegisteredList(event: event, session: $session)
             }
             if session.selectedTab == .tables  {
-                TablePlanView(session: $session, tables:checkTables(attendees: session.attendees), idEvent: event.id!)
+                TablePlanView(session: $session, tables:checkTables(attendees: session.attendees.filter({ $0.paid > 0})), idEvent: event.id!)
             }
         }
     }

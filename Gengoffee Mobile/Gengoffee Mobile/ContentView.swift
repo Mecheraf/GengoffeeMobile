@@ -28,17 +28,10 @@ struct ContentView: View {
                         Settings(session: $session)
                     }
                 Spacer()
-                    Button{
-                        do {
-                            print(session.events)
-                        }
-                    }label: {
-                        designButton(icon: "icloud.and.arrow.up.fill", text: "Print events")
-                    }
-                    FooterComponent(selectedTab: $session.selectedTab)
-                    .padding([.top], 20)
+                FooterComponent(selectedTab: $session.selectedTab)
+                .padding([.top], 20)
                 }
-                .task {
+                .onAppear() {
                     do {
                         if(session.token  != "1"){
                             getAttendees(token: session.token, finished: { success in

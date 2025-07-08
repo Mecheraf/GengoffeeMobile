@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 extension Color {
 
     public static var gengoffeeRed: Color {
@@ -20,12 +19,16 @@ extension Color {
         return Color(UIColor(red: 230/255, green: 194/255, blue: 208/255, alpha: 1.0))
     }
     public static var gengoffeeGreen: Color {
-        return Color(UIColor(red: 0/255, green: 128/255, blue: 95/255, alpha: 1.0))
+        return Color(UIColor(red: 174/255, green: 197/255, blue: 201/255, alpha: 1.0))
     }
     
     public static var Text: Color {
-        @Environment(\.colorScheme) var colorScheme
-        return (colorScheme == .dark ? Color(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)) : Color(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)) )
+        var osTheme: UIUserInterfaceStyle {
+            return UIScreen.main.traitCollection.userInterfaceStyle
+        }
+        
+        return (osTheme == .dark ? Color(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)) : Color(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)) )
     }
     
 }
+

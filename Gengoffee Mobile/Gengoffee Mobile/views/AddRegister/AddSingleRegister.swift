@@ -32,6 +32,7 @@ struct AddSingleRegisterView: View {
         VStack {
             Section("User Informations") {
                 TextField("Name", text: $newUser.firstname)
+                    .autocorrectionDisabled(true)
                     .focused($keyboardFocused)
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -91,28 +92,12 @@ struct AddRegisterButtons: View {
 
 
 func addLocalRegister(session:inout MainModel, newUser:Attendee){
-    session.attendees.append(
-        Attendee(
-            idUser: ((session.attendees.last?.idUser ?? 0) - 1),
-            firstname: newUser.firstname,
-            lastname: newUser.lastname,
-            diet: Optional(""),
-            paid: newUser.paid,
-            idEvent: newUser.idEvent,
-            tablenumber: 0,
-            nationality: newUser.nationality,
-            changed:newUser.changed
-        )
-    )
-    let encoder = JSONEncoder()
-    if let encoded = try? encoder.encode(session.attendees) {
-        UserDefaults.standard.set(encoded, forKey: "attendees")
-    }
+    
     if(session.token != "1"){
         addTemporaryAttendee(message: temporaryAttendees(
             type:2,
             attendees:[Attendee(
-                idUser: ((session.attendees.last?.idUser ?? 0) - 1),
+                idUser: -1,
                 firstname: newUser.firstname,
                 lastname: newUser.lastname,
                 diet: Optional(""),
@@ -123,8 +108,26 @@ func addLocalRegister(session:inout MainModel, newUser:Attendee){
                 changed:newUser.changed
             )]
         ), token:session.token, completion: { success in
-            print(success)
+            print("Add temporary user : \(success)")
         })
+    } else {
+        session.attendees.append(
+            Attendee(
+                idUser: ((session.attendees.map{ $0.idUser}.min() ?? 0) - 1),
+                firstname: newUser.firstname,
+                lastname: newUser.lastname,
+                diet: Optional(""),
+                paid: newUser.paid,
+                idEvent: newUser.idEvent,
+                tablenumber: 0,
+                nationality: newUser.nationality,
+                changed:newUser.changed
+            )
+        )
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(session.attendees) {
+            UserDefaults.standard.set(encoded, forKey: "attendees")
+        }
     }
 }
 

@@ -11,13 +11,13 @@ import SwiftUI
 func selectColor(nat:String) -> Color{
     switch nat {
     case "jp":
-        return Color.gengoffeeRed
+        return Color.gengoffeeRed //red
     case "en":
-        return Color.gengoffeeGreen
+        return Color.gengoffeeGreen //green
     case "fr":
-        return Color.gengoffeeBlue
+        return Color.gengoffeeBlue //blue
     case "ハーフ", "half":
-        return Color.gengoffeePink
+        return Color.gengoffeePink //pink
 
     default :
         return .white
@@ -30,6 +30,8 @@ func selectColorEvent(type:String) -> Color{
         return Color.gengoffeeRed
     case "en", "fr":
         return Color.gengoffeeBlue
+    case "boardgame":
+        return Color.gengoffeeGreen
     default :
         return .white
     }

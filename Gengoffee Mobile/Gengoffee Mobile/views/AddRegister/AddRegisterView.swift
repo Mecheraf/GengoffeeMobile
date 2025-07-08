@@ -108,7 +108,7 @@ struct AddRegisterView: View {
                         do {
                             let message = convertNewUser(user: newUser, idEvent: idEvent)
                             newUserToEvent(message: message, completion: { success in
-                                print(success)
+                                print("Add new user : ",success)
                             })
                         }
                     }label: {

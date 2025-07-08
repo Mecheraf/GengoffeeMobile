@@ -31,7 +31,7 @@ func addUpdatedAttendee(newAttendee:Attendee, list:inout [Attendee]){
 
 func addUser(message: Event, completion: @escaping (_ success: Bool) -> Void){
     
-    @StateObject var globalAPI = APIModel()
+    @State var globalAPI = APIModel()
     
     let url = URL(string: globalAPI.API_Prod+"insertuser")!
     var request = URLRequest(url: url)
@@ -67,7 +67,7 @@ func addUser(message: Event, completion: @escaping (_ success: Bool) -> Void){
 
 func newUserToEvent(message: newUser, completion: @escaping (_ success: Bool) -> Void){
     
-    @StateObject var globalAPI = APIModel()
+    @State var globalAPI = APIModel()
     
     let url = URL(string: globalAPI.API_Prod+"newUserToEvent")!
     var request = URLRequest(url: url)
@@ -91,10 +91,10 @@ func newUserToEvent(message: newUser, completion: @escaping (_ success: Bool) ->
         {
             if statusCode == 200 {
                 success = true
-                print("SUCCESS")
+                print("SUCCESS New User")
             } else {
                 success = false
-                print("FAILURE")
+                print("FAILURE New User")
             }
         }
         completion(success)
@@ -104,7 +104,7 @@ func newUserToEvent(message: newUser, completion: @escaping (_ success: Bool) ->
 
 func updateAttendee(message: [Attendee], token:String, completion: @escaping (_ success: Bool) -> Void){
     
-    @StateObject var globalAPI = APIModel()
+    @State var globalAPI = APIModel()
     let tmp = [
         "attendees":convertUpdatedAttendee(attendees: message)
     ]

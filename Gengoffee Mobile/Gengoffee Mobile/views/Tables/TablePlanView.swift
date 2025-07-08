@@ -43,7 +43,7 @@ struct TablePlanView: View {
                             }
                         }
                     }.refreshable {
-                        tables = checkTables(attendees: session.attendees)
+                        tables = checkTables(attendees: session.attendees.filter({ $0.paid > 0}))
 
                         if(session.token == "1"){
                             session.attendees = getLocalAttendees()

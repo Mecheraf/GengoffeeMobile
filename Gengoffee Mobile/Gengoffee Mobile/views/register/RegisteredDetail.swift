@@ -53,18 +53,22 @@ struct RegisteredDetail: View {
                     if(attendee.idUser > 0 ){
                         updateUser(message: [attendee],
                                completion: { success in
-                                                print(success)
+                                                print("Update user : ", success)
                                             }
                         )
-                        updateTableAttendee(attendees: [attendee], token: session.token,
+                        updateAttendee(message: [attendee], token: session.token,
                                completion: { success in
-                                                print(success)
+                                                print("Update attendee 1 : ", success)
                                             }
                         )
                     } else {
-                        updateTableAttendee(attendees: [attendee], token: session.token,
+                        let encoder = JSONEncoder()
+                        if let encoded = try? encoder.encode(session.attendees) {
+                            UserDefaults.standard.set(encoded, forKey: "attendees")
+                        }
+                        updateAttendee(message: [attendee], token: session.token,
                                completion: { success in
-                                                print(success)
+                                                print("Update attendee 2 : ", success)
                                             }
                         )
                     }

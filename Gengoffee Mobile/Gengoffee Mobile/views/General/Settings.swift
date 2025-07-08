@@ -29,14 +29,15 @@ struct Settings:View {
                message: Text("There is no undo"),
                primaryButton: .destructive(Text("Delete")) {
                    do {
-                    addTemporaryAttendee(message: temporaryAttendees(
-                    type:0,
-                    attendees:[]
-                    ), token: session.token, completion: { success in
-                       print(success)
-                    })
+                       if(session.token != "1") {
+                           addTemporaryAttendee(message: temporaryAttendees(
+                           type:0,
+                           attendees:[]
+                           ), token: session.token, completion: { success in
+                              print("Reset attendees : ",success)
+                           })
+                       }
                    }
-                   
                    resetDefaultsAttendee()
 
                },

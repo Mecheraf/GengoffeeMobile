@@ -21,7 +21,7 @@ struct WaitingList:View {
         HStack{
             VStack{
                 AttendeesAlignement(session:$session, selectedUser: $selectedUser, idEvent:idEvent)
-                    .padding([.top, .bottom], 8)
+                    .padding([.top, .bottom], 7)
             }
             .background{
                 Color.white
@@ -43,7 +43,7 @@ struct WaitingList:View {
             
 
         }
-        .frame(height: isSelected ? 180: 25)
+        .frame(height: isSelected ? 180: 30)
         
     }
 }

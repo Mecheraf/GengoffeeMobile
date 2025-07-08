@@ -8,28 +8,41 @@
 import Foundation
 import SwiftUI
 
-func updateTableAttendee(attendees: [Attendee], token:String, completion: @escaping (_ success: Bool) -> Void){
+struct updateWithMail: Codable {
+    let attendees: [Attendee]
+    let types:[String]?
+    let date:String?
+}
+
+
+
+func updateTableAttendee(attendees: [Attendee], token:String, types:[String]? = nil, date:String? = nil, completion: @escaping (_ success: Bool) -> Void){
     
     if(token == "1"){
         return
     }
     
-    @StateObject var golbalAPI = APIModel()
+    @State var golbalAPI = APIModel()
     
     var values:[Attendee] = []
         
     attendees.forEach{ element in
         values.append(element)
     }
-    let message = [
-        "attendees": values
-    ]
-                
+    
+    let message:updateWithMail = updateWithMail(
+        attendees: values,
+        types: types,
+        date : date
+    )
+                        
     let url = URL(string: golbalAPI.API_Prod+"updateTableAttendee")!
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
     
     let data = try! JSONEncoder().encode(message)
+    
+    print(data)
     request.httpBody = data
     request.setValue(
         "application/json",
@@ -170,7 +183,7 @@ func getLocalAttendees() -> [Attendee]{
 
 func addTemporaryAttendee(message: temporaryAttendees, token:String, completion: @escaping (_ success: Bool) -> Void){
     
-    @StateObject var globalAPI = APIModel()
+    @State var globalAPI = APIModel()
     
     let url = URL(string: globalAPI.API_Prod+"temporaryAttendee")!
     var request = URLRequest(url: url)
@@ -194,10 +207,10 @@ func addTemporaryAttendee(message: temporaryAttendees, token:String, completion:
         {
             if statusCode == 200 {
                 success = true
-                print("SUCCESS")
+                print("SUCCESS temporary attendee")
             } else {
                 success = false
-                print("FAILURE")
+                print("FAILURE temporary attendee")
             }
         }
         completion(success)
@@ -206,7 +219,7 @@ func addTemporaryAttendee(message: temporaryAttendees, token:String, completion:
 }
 
 func getAttendees(token:String, finished: @escaping (_ success: [Attendee])->Void) {
-    @StateObject var golbalAPI = APIModel()
+    @State var golbalAPI = APIModel()
     
     let url = URL(string: golbalAPI.API_Prod+"getAttendees")!
     var request = URLRequest(url: url)
@@ -245,7 +258,7 @@ func getAttendees(token:String, finished: @escaping (_ success: [Attendee])->Voi
 }
 
 func getTemporaryAttendees(finished: @escaping (_ success: [Attendee])->Void) {
-    @StateObject var golbalAPI = APIModel()
+    @State var golbalAPI = APIModel()
     
     let url = URL(string: golbalAPI.API_Prod+"getTemporaryAttendee")!
     var request = URLRequest(url: url)

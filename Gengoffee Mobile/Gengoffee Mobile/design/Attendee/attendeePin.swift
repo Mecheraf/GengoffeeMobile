@@ -13,8 +13,6 @@ struct AttendeePin:View {
     @State var testList:[Attendee] = []
     @State var isPressing = false
     
-    @Environment(\.colorScheme) var colorScheme
-
     var body: some View {
         NavigationStack {
             let backgroundColor = attendee.changed == 0 ? Color.clear : selectColor(nat: attendee.nationality).opacity(0.6)
@@ -40,10 +38,10 @@ struct AttendeePin:View {
         }
     }
 }
-
+ 
 #Preview {
     struct Preview: View {
-        @State var session: MainModel = MainModel(events: [], attendees: setAttendees, selectedTab: .tables, token:"")
+        @State var session: MainModel = MainModel(events: [blankEvent], attendees: setAttendees, selectedTab: .tables, token:"1")
         var body: some View {
             TablePlanView(session: $session)
         }

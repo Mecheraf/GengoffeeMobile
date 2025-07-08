@@ -28,7 +28,7 @@ func getEvents(limit:Int) async throws -> [Event] {
 
 func addEvent(message: Event, token:String, completion: @escaping (_ success: Bool) -> Void){
     
-    @StateObject var golbalAPI = APIModel()
+    @State var golbalAPI = APIModel()
     
     let url = URL(string: golbalAPI.API_Prod+"insertevent")!
     var request = URLRequest(url: url)
@@ -103,4 +103,9 @@ func checkEvent(attendee:Attendee, idEvent:Int) -> Bool {
         return true
     }
     return false
+}
+
+
+func getEventTypes(event:Event) -> [String] {
+    return [event.location.lowercased() == "paris" ? "fr" : "jp", event.type]
 }

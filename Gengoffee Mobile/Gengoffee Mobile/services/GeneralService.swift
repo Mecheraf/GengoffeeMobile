@@ -40,7 +40,7 @@ func deleteDefaultsAttendee(id:Int) {
 }
 
 func loginFunc(username:String, password:String, finished: @escaping (_ success: String)->Void) {
-    @StateObject var golbalAPI = APIModel()
+    @State var golbalAPI = APIModel()
     
     let url = URL(string: golbalAPI.API_Prod+"loginAdmin")!
     var request = URLRequest(url: url)
@@ -70,9 +70,9 @@ func loginFunc(username:String, password:String, finished: @escaping (_ success:
                 if let token:Token = try? decoder.decode(Token.self, from: data!) {
                     success = token.token
                 }
-                print("SUCCESS")
+                print("SUCCESS login")
             } else {
-                print("FAILURE")
+                print("FAILURE login")
             }
         }
         finished(success)

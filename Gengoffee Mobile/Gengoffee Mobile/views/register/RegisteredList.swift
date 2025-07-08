@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct RegisteredList: View {
-    @State var idEvent:Int = 0
+    @State var event:Event = blankEvent
     @Binding var session:MainModel
     @State private var updatedAttendees:[Attendee] = []
 
@@ -20,7 +20,7 @@ struct RegisteredList: View {
                 List{
                     Section("On list"){
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
-                            if (attendee.paid == registerState[0] && checkEvent(attendee: attendee, idEvent: idEvent)) {
+                            if (attendee.paid == registerState[0] && checkEvent(attendee: attendee, idEvent: event.id!)) {
                                 NavigationLink {
                                     RegisteredDetail(attendee: $session.attendees[index], session: $session, nat: session.attendees[index].nationality)
                                 }
@@ -30,9 +30,9 @@ struct RegisteredList: View {
                             }
                         }
                     }
-                    Section(session.selectedTab == .createEvent ?  "Approved" : "Paid : \(countPaidUsers(attendees: getAttendeesPerEvent(idEvent: idEvent, attendees:session.attendees)))"){
+                    Section(session.selectedTab == .createEvent ?  "Approved" : "Paid : \(countPaidUsers(attendees: getAttendeesPerEvent(idEvent: event.id!, attendees:session.attendees)))"){
                         ForEach(Array(session.attendees.enumerated()), id: \.offset){ index, attendee in
-                            if (registerState.contains(attendee.paid) && attendee.paid > registerState[0] && checkEvent(attendee: attendee, idEvent: idEvent)) {
+                            if (registerState.contains(attendee.paid) && attendee.paid > registerState[0] && checkEvent(attendee: attendee, idEvent: event.id!)) {
                                 NavigationLink {
                                     RegisteredDetail(attendee: $session.attendees[index], session:$session, nat: session.attendees[index].nationality)
                                 }
@@ -47,6 +47,7 @@ struct RegisteredList: View {
             }
         }.refreshable {
             Task { //Need to update the attendees table before
+                print(event)
                 if(session.token == "1"){
                     session.attendees = getLocalAttendees()
                 } else {
@@ -66,10 +67,17 @@ struct RegisteredList: View {
                     let encoder = JSONEncoder()
                     if let encoded = try? encoder.encode(session.attendees) {
                         UserDefaults.standard.set(encoded, forKey: "attendees")
-                    }                    
-                    updateTableAttendee(attendees: updatedAttendees, token:session.token, completion: { success in
-                        print(success)
-                    })
+                    }
+                    if(session.selectedTab == .createEvent) {
+                        updateAttendee(message: updatedAttendees, token:session.token, completion: { success in
+                            print("Update table attendee : ", success)
+                        })
+                    } else {
+                        updateAttendee(message: updatedAttendees, token:session.token, completion: { success in
+                            print("Update attendees : ", success)
+                        })
+                    }
+                    
                 }
             }label: {
                 designButton(icon: "icloud.and.arrow.up.fill", text: "Save list")
@@ -80,9 +88,9 @@ struct RegisteredList: View {
 
 #Preview {
     struct Preview: View {
-        @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"")
+        @State var session: MainModel = MainModel(events: [blankEvent], attendees: sortNameAttendees(arr:getLocalAttendees()), selectedTab: .checkIn, token:"1")
         var body: some View {
-            RegisteredList(idEvent: 0, session: $session)
+            RegisteredList(event: blankEvent, session: $session)
         }
     }
     return Preview()
